@@ -1,0 +1,22 @@
+#barra {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+button {
+    border-radius: 5rem;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 5rem;
+
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+
+
+}
