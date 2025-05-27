@@ -9,7 +9,9 @@
     @for (imagen of listaDeImagenes; track imagen.id) {
 
     <img src="{{imagen.url}}" alt="Imagen">
-    <h3>id: {{imagen.id}}</h3>
+    <h3>id: {{imagen.id}} <br>
+      <!-- raza: {{imagen.breeds[0].breed_group}} -->
+    </h3>
 
     } @empty {
     <p>No existen productos</p>
