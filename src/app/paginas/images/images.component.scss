@@ -1,12 +1,14 @@
-#barra {
+.carrusel > div, #barra {
     display: flex;
+    flex-wrap: nowrap; /* Evita que se rompa en varias líneas */
     align-items: center;
-    gap: 5rem;
+    flex-wrap: wrap;
+
 }
 
 button {
     border-radius: 5rem;
-    padding: 10px 15px;
+    padding: 10px 25px;
     border: none;
     cursor: pointer;
     font-size: 5rem;
@@ -19,4 +21,19 @@ input[type="text"] {
     width: 200px;
 
 
+}
+img{
+    width:25rem;
+    height:25rem;
+    margin-left: 2rem;
+}
+h3{
+    background-color: rebeccapurple;
+    color:white;
+    font-size: larger;
+    padding-top:11rem;
+    padding-bottom:11rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-left: 0;
 }

@@ -25,4 +25,5 @@ export class ImagesComponent {
       ()=> console.log('FIN')
     )
   }
+  
 }
