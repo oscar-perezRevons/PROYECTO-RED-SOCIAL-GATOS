@@ -1,9 +1,12 @@
 <div id="barra">
-  <input type="text">
-  <button>+</button>
+  <input type="text"  [(ngModel)]="idInput" placeholder="Ingrese ID">
+  <button (click)="buscarImagen()" id="search">Buscar por id</button>
+  <button id="add">+</button>
 </div>
-
-
+  
+<div *ngIf="imageUrl">
+  <img [src]="imageUrl" alt="Imagen obtenida">
+</div>
 <div class="carrusel">
   <div>
     @for (imagen of listaDeImagenes; track imagen.id) {
@@ -18,3 +21,4 @@
     }
   </div>
 </div>
+<div>

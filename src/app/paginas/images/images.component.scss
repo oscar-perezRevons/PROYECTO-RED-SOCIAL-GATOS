@@ -8,20 +8,30 @@
 #barra{
     display: flex;
     justify-items: flex-start;
+    margin: 1rem;
 }
-button {
+#add {
     border-radius: 5rem;
     padding: 10px 25px;
     border: none;
     cursor: pointer;
     font-size: 5rem;
-    margin-left:80%;
+    margin-left:70%;
 
+}
+#search{
+    border-radius: 5rem;
+    padding:1rem;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    margin-left: 1rem;
 }
 
 input[type="text"] {
     padding: 10px;
     font-size: 16px;
+    margin-left:1.5rem;
 }
 img{
     width:25rem;

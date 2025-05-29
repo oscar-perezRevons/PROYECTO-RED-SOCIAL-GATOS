@@ -15,7 +15,7 @@ export class GatoService {
     return this.http.get<image[]>('https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=20')
   }
   obtenerImagenPorId(id:string):Observable<image>{
-    return this.http.get<image>('https://api.thecatapi.com/v1/images/BkIEhN3pG/'+id)
+    return this.http.get<image>('https://api.thecatapi.com/v1/images/'+id)
 
   }
 }
