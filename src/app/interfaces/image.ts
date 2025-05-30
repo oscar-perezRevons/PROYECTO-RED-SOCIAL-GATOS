@@ -1,11 +1,14 @@
 
 export interface Breed {
+  adaptability:number;
   id: number;
+  origin:string;
   name: string;
   weight: string;
   height: string;
   life_span: string;
   breed_group: string;
+  temperament:string;
 }
 
 export interface image {

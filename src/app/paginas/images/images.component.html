@@ -1,23 +1,42 @@
 <div id="barra">
-  <input type="text"  [(ngModel)]="idInput" placeholder="Ingrese ID">
+  <input type="text" [(ngModel)]="idInput" placeholder="Ingrese ID">
   <button (click)="buscarImagen()" id="search">Buscar por id</button>
-  <button id="add">+</button>
+  <button (click)="getMisImags()" id="my_images">Ver mis imágenes subidas</button>
+  <button id="add" [routerLink]="'/formulario-nueva-imagen'">+</button>
+
 </div>
-  
+
 <div *ngIf="imageUrl">
   <img [src]="imageUrl" alt="Imagen obtenida">
+</div>
+<div class="carrusel" *ngIf="tengoImgsSubidas">
+  <div>
+    @if (imageUrl !='') {
+      <h3>Todas las imágenes que subí</h3>
+      @for (imagen of listaDeImagenes; track imagen.id) {
+
+        <img src="{{imagen.url}}" alt="Imagen">
+        <h3>id: {{imagen.id}} <br>
+          name: {{imagen.breeds[0].name}} <br>
+        </h3>
+
+      } @empty {
+      <p>No existen imágenes de gatos subidas por el usuario</p>
+      }
+  }
+  </div>
 </div>
 <div class="carrusel">
   <div>
     @for (imagen of listaDeImagenes; track imagen.id) {
-
     <img src="{{imagen.url}}" alt="Imagen">
     <h3>id: {{imagen.id}} <br>
-      <!-- raza: {{imagen.breeds[0].breed_group}} -->
+      name: {{imagen.breeds[0].name}} <br>
+      origin: {{imagen.breeds[0].origin}} <br>
+      temperament: {{imagen.breeds[0].temperament}}
     </h3>
-
     } @empty {
-    <p>No existen productos</p>
+    <p>No existen imágenes de gatos</p>
     }
   </div>
 </div>
