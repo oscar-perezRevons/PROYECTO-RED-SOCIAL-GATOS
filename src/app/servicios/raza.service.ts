@@ -17,7 +17,7 @@ export class RazaService {
   obtenerRazaPorId(id: string): Observable<Breed>{ 
     return this.http.get<Breed>(this.url+'/'+id) 
   } 
-  obtenerRazas(id: string): Observable<Breed[]>{ //
-    return this.http.get<Breed[]>(this.url_raza+id+'&attach_image=1') 
+  obtenerRazas(raza: string): Observable<Breed[]>{ //
+    return this.http.get<Breed[]>(this.url_raza+raza+'&attach_image=1') 
   }
 }
