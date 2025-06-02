@@ -20,7 +20,7 @@
     margin-left:60%;
 
 }
-#search{
+.search{
     border-radius: 5rem;
     padding:1rem;
     border: none;
@@ -60,4 +60,10 @@ h3{
     padding-left: 1rem;
     margin-left: 0;
     width:15%;
+}
+h2{
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+    color:rebeccapurple;
 }

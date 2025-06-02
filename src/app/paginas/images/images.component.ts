@@ -15,6 +15,7 @@ import { Router, RouterLink } from '@angular/router';
 export class ImagesComponent {
   // @Input()Imagen!:image;
   listaDeImagenes: image[] = [];
+  listaDeMisImagenes: image[]=[];
   imagenService: GatoService = inject(GatoService);
   imageUrl: string = '';
   idInput: string = '';
@@ -55,7 +56,7 @@ export class ImagesComponent {
     this.imagenService.obtenerTodasMisImagenes().subscribe(
       data => {
         console.log("Las imágenes que subí", data);
-        this.listaDeImagenes = data;
+        this.listaDeMisImagenes = data;
         this.tengoImgsSubidas = data.length > 0;
       },
       error => {

@@ -1,7 +1,7 @@
 <div id="barra">
   <input type="text" [(ngModel)]="idInput" placeholder="Ingrese ID">
-  <button (click)="buscarImagen()" id="search">Buscar por id</button>
-  <button (click)="borrarImagen()" id="search">Borrar por id</button>
+  <button (click)="buscarImagen()" class="search">Buscar por id</button>
+  <button (click)="borrarImagen()" class="search">Borrar por id</button>
   <button (click)="getMisImags()" id="my_images">Ver mis imágenes subidas</button>
   <button id="add" [routerLink]="'/formulario-nueva-imagen'">+</button>
 
@@ -11,24 +11,24 @@
   <img [src]="imageUrl" alt="Imagen obtenida">
 </div>
 <div class="carrusel" *ngIf="tengoImgsSubidas">
+  <h2>Todas las imágenes que subí</h2> <br>
   <div>
-    @if (imageUrl !='') {
-      <h3>Todas las imágenes que subí</h3>
-      @for (imagen of listaDeImagenes; track imagen.id) {
+      
+      @for (imagen of listaDeMisImagenes; track imagen.id) {
 
         <img src="{{imagen.url}}" alt="Imagen">
         <h3>id: {{imagen.id}} <br>
-          name: {{imagen.breeds[0].name}} <br>
         </h3>
 
       } @empty {
       <h2>No existen imágenes de gatos subidas por el usuario</h2>
       }
-  }
   </div>
 </div>
 <div class="carrusel">
+  <h2>Todas las imágenes</h2> <br>
   <div>
+    
     @for (imagen of listaDeImagenes; track imagen.id) {
     <img src="{{imagen.url}}" alt="Imagen">
     <h3>id: {{imagen.id}} <br>
