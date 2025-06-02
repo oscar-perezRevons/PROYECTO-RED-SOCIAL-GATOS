@@ -26,6 +26,7 @@ export class FormularioNuevaImagenComponent {
       console.log(this.selectedFile.name);
       formData.append('sub_id', 'kitty123456');
       formData.append('breed_ids', 'unknown');
+      // formData.append('breeds[0].name',toString(name));
 
       this.imagenService.postearNuevaImagen(formData).subscribe({
         next: (res) => {alert('Subida de imagen exitosa '), console.log('Éxito ',res)},
