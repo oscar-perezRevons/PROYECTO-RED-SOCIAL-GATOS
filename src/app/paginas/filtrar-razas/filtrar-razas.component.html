@@ -1,0 +1,9 @@
+<div class="contenedor-razas"> 
+    @for ( raza of listaDeRazas; track raza.id){  
+        <div> 
+        <app-raza [raza]="raza"></app-raza> 
+        </div> 
+    } @empty { 
+        <p>No existen razas</p> 
+    } 
+  </div>
