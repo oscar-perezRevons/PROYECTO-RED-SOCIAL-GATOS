@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Catamaran:400,800');
-
+h1{
+   font-family: 'Catamaran', sans-serif;
+}
 .error-container {
   text-align: center;
-  font-size: 180px;
+  font-size: 300px;
   font-family: 'Catamaran', sans-serif;
   font-weight: 800;
   margin: 20px 15px;
