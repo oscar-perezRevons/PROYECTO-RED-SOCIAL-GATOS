@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-import { ImagesComponent } from './paginas/images/images.component';
 
 @Component({
   selector: 'app-root',
