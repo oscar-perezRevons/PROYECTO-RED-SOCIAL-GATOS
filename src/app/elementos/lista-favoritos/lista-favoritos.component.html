@@ -1,0 +1,9 @@
+<div *ngIf="favourites.length; else cargando" class="favoritos-lista">
+  <div *ngFor="let fav of favourites" class="favorito-card">
+    <img [src]="fav.image.url" alt="gato favorito" />
+  </div>
+</div>
+
+<ng-template #cargando>
+  <p>Cargando favoritos...</p>
+</ng-template>

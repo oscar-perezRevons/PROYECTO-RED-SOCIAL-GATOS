@@ -7,8 +7,10 @@ import { DetallesRazaComponent } from './paginas/detalles-raza/detalles-raza.com
 import { FiltrarRazasComponent } from './paginas/filtrar-razas/filtrar-razas.component';
 import { VotesPageComponent } from './paginas/votes-page/votes-page.component';
 import { VoteDetailComponent } from './paginas/vote-detail/vote-detail.component';
+import { FavoritosComponent } from './paginas/favoritos/favoritos.component';
 
 export const routes: Routes = [
+  { path: 'favoritos', component: FavoritosComponent },
     {path:'images',component: ImagesComponent},
   {path: 'formulario-nueva-imagen',component:FormularioNuevaImagenComponent},
     {path:'razas',component: RazasComponent},

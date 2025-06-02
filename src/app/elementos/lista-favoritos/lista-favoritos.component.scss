@@ -1,0 +1,12 @@
+.favoritos-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.favorito-card {
+  width: 200px;
+}
+.favorito-card img {
+  width: 100%;
+  border-radius: 8px;
+}
