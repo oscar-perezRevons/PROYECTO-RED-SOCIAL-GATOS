@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { image } from '../../interfaces/image';
 import { GatoService } from '../../servicios/gato.service';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +13,7 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './images.component.scss'
 })
 export class ImagesComponent {
+  // @Input()Imagen!:image;
   listaDeImagenes: image[] = [];
   imagenService: GatoService = inject(GatoService);
   imageUrl: string = '';
@@ -55,7 +56,7 @@ export class ImagesComponent {
       data => {
         console.log("Las imágenes que subí", data);
         this.listaDeImagenes = data;
-        this.tengoImgsSubidas = data.length > 0; 
+        this.tengoImgsSubidas = data.length > 0;
       },
       error => {
         alert("Error al mostrar mis imágenes");
@@ -64,4 +65,27 @@ export class ImagesComponent {
       () => console.log('FIN')
     );
   }
+  borrarImagen() {
+    if (this.idInput.trim() === '') {
+      alert('Ingresa un id para borrar un gato');
+      return;
+    }
+
+    this.imagenService.borrarImagenPorId(this.idInput).subscribe({
+      next: data => {
+        console.log("Imagen eliminada con éxito: ", data);
+        alert("Imagen eliminada con éxito");
+        this.imageUrl = '';
+      },
+      error: error => {
+        if (error.status === 400) {
+          alert('Error: No puedes eliminar imágenes que no subiste');
+        } else {
+          alert('Error al borrar la imagen');
+        }
+        console.log(error);
+      }
+    });
+  }
+
 }

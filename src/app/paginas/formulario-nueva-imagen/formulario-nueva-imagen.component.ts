@@ -29,7 +29,14 @@ export class FormularioNuevaImagenComponent {
 
       this.imagenService.postearNuevaImagen(formData).subscribe({
         next: (res) => {alert('Subida de imagen exitosa '), console.log('Éxito ',res)},
-        error: (err) => {alert('Error al subir la imagen: '),  console.log('Error ',err)}
+        error: (error) => {
+          if (error.status === 400) {
+          alert('Error: No puedes eliminar imágenes que no subiste');
+        } else {
+          alert('Error al subir la imagen');
+        }
+        console.log(error);
+        }
       });
     }
 
