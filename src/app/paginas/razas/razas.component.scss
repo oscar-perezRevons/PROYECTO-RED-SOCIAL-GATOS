@@ -1,0 +1,30 @@
+.contenedor-razas{ 
+display: flex; 
+flex-direction: row; 
+gap: 1rem; 
+flex-wrap: wrap; 
+div{ 
+flex-basis: 25%; 
+flex-grow: 1; 
+flex-shrink: 1; 
+} 
+}
+
+
+
+.buscador-nav { //prueba
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 1%;
+}
+
+.input-busqueda {
+  flex: 1;
+  padding: 5px;
+}
+
+.boton-busqueda {
+  padding: 5px 15px;
+  cursor: pointer;
+}
