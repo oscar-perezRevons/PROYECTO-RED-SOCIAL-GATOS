@@ -24,7 +24,7 @@ export class FormularioNuevaImagenComponent {
       const formData = new FormData();
       formData.append('file', this.selectedFile, this.selectedFile.name);
       console.log(this.selectedFile.name);
-      formData.append('sub_id', 'kitty123456');
+      formData.append('sub_id', this.selectedFile.name);
       formData.append('breed_ids', 'unknown');
       // formData.append('breeds[0].name',toString(name));
 
@@ -32,6 +32,7 @@ export class FormularioNuevaImagenComponent {
         next: (res) => {alert('Subida de imagen exitosa '), console.log('Éxito ',res)},
         error: (error) => {
            alert('Error al subir la imagen');
+
         console.log(error);
         }
       });

@@ -15,39 +15,58 @@ import { Router, RouterLink } from '@angular/router';
 export class ImagesComponent {
   // @Input()Imagen!:image;
   listaDeImagenes: image[] = [];
-  listaDeMisImagenes: image[]=[];
+  listaDeImagenesRazas:string[]=[];
+  listaDeMisImagenes: image[] = [];
   imagenService: GatoService = inject(GatoService);
   imageUrl: string = '';
   idInput: string = '';
+  razaInput: string = '';
+  imagenes: string[] = [];
   tengoImgsSubidas: boolean = false;
   private router = inject(Router);
 
   constructor() {
+
     this.imagenService.obtenerTodasLasImagenes().subscribe(
       data => {
-        this.listaDeImagenes = data,
-          console.log("mis datos", data)
+        this.listaDeImagenes = data.map(imagen => {
+          return {
+            ...imagen, 
+            name: imagen.breeds.length > 0 ? imagen.breeds[0].name : "Sin raza" 
+          };
+        });
+
+        console.log("mis datos", this.listaDeImagenes);
       },
       error => console.log(error),
       () => console.log('FIN')
-    )
+    );
   }
 
-  buscarImagen() {
-    if (this.idInput.trim() === '') {
-      alert('Ingresa un id para buscar un gato');
-      return;
-    }
-
-    this.imagenService.obtenerImagenPorId(this.idInput).subscribe({
-      next: data => {
-        console.log("Imagen obtenida:", data);
-        this.imageUrl = data.url ?? '';
-      },
-      error: error => { alert("Error al obtener imagen"), console.log(error) }
-
-    });
+ buscarImagenPorRaza() {
+  if (this.razaInput.trim() === '') {
+    alert('Ingresa el nombre de una raza para buscar imágenes');
+    return;
   }
+
+  this.imagenService.obtenerIdPorNombre(this.razaInput).subscribe({
+    next: breeds => {
+      if (breeds.length > 0) {
+        const idRaza = breeds[0].id; 
+        this.imagenService.obtenerImagenesPorRaza(idRaza).subscribe({
+          next: imagenes => {
+            this.listaDeImagenesRazas = imagenes.map(img => img.url);
+            console.log("Imágenes obtenidas:", this.listaDeImagenesRazas);
+          },
+          error: error => console.log("Error al obtener imágenes", error)
+        });
+      } else {
+        alert("No se encontró la raza ingresada");
+      }
+    },
+    error: error => console.log("Error al obtener el ID de la raza", error)
+  });
+}
 
   irAFormulario() {
     this.router.navigate(['/formulario-nueva-imagen']);
