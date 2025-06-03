@@ -15,7 +15,7 @@ import { Router, RouterLink } from '@angular/router';
 export class ImagesComponent {
   // @Input()Imagen!:image;
   listaDeImagenes: image[] = [];
-  listaDeImagenesRazas:string[]=[];
+  listaDeImagenesRazas: string[] = [];
   listaDeMisImagenes: image[] = [];
   imagenService: GatoService = inject(GatoService);
   imageUrl: string = '';
@@ -23,6 +23,7 @@ export class ImagesComponent {
   razaInput: string = '';
   imagenes: string[] = [];
   tengoImgsSubidas: boolean = false;
+  subIdInput: string = '';
   private router = inject(Router);
 
   constructor() {
@@ -31,8 +32,8 @@ export class ImagesComponent {
       data => {
         this.listaDeImagenes = data.map(imagen => {
           return {
-            ...imagen, 
-            name: imagen.breeds.length > 0 ? imagen.breeds[0].name : "Sin raza" 
+            ...imagen,
+            name: imagen.breeds.length > 0 ? imagen.breeds[0].name : "Sin raza"
           };
         });
 
@@ -43,30 +44,30 @@ export class ImagesComponent {
     );
   }
 
- buscarImagenPorRaza() {
-  if (this.razaInput.trim() === '') {
-    alert('Ingresa el nombre de una raza para buscar imágenes');
-    return;
-  }
+  buscarImagenPorRaza() {
+    if (this.razaInput.trim() === '') {
+      alert('Ingresa el nombre de una raza para buscar imágenes');
+      return;
+    }
 
-  this.imagenService.obtenerIdPorNombre(this.razaInput).subscribe({
-    next: breeds => {
-      if (breeds.length > 0) {
-        const idRaza = breeds[0].id; 
-        this.imagenService.obtenerImagenesPorRaza(idRaza).subscribe({
-          next: imagenes => {
-            this.listaDeImagenesRazas = imagenes.map(img => img.url);
-            console.log("Imágenes obtenidas:", this.listaDeImagenesRazas);
-          },
-          error: error => console.log("Error al obtener imágenes", error)
-        });
-      } else {
-        alert("No se encontró la raza ingresada");
-      }
-    },
-    error: error => console.log("Error al obtener el ID de la raza", error)
-  });
-}
+    this.imagenService.obtenerIdPorNombre(this.razaInput).subscribe({
+      next: breeds => {
+        if (breeds.length > 0) {
+          const idRaza = breeds[0].id;
+          this.imagenService.obtenerImagenesPorRaza(idRaza).subscribe({
+            next: imagenes => {
+              this.listaDeImagenesRazas = imagenes.map(img => img.url);
+              console.log("Imágenes obtenidas:", this.listaDeImagenesRazas);
+            },
+            error: error => console.log("Error al obtener imágenes", error)
+          });
+        } else {
+          alert("No se encontró la raza ingresada");
+        }
+      },
+      error: error => console.log("Error al obtener el ID de la raza", error)
+    });
+  }
 
   irAFormulario() {
     this.router.navigate(['/formulario-nueva-imagen']);
@@ -85,27 +86,20 @@ export class ImagesComponent {
       () => console.log('FIN')
     );
   }
-  borrarImagen() {
-    if (this.idInput.trim() === '') {
-      alert('Ingresa un id para borrar un gato');
-      return;
-    }
-
-    this.imagenService.borrarImagenPorId(this.idInput).subscribe({
+  // componente.ts
+  borrarImagen(id: string) {
+    this.imagenService.borrarImagenPorId(id).subscribe({
       next: data => {
         console.log("Imagen eliminada con éxito: ", data);
         alert("Imagen eliminada con éxito");
-        this.imageUrl = '';
+
+        // Actualizar la lista después de la eliminación
+        this.listaDeMisImagenes = this.listaDeMisImagenes.filter(img => img.id !== id);
       },
       error: error => {
-        if (error.status === 400) {
-          alert('Error: No puedes eliminar imágenes que no subiste');
-        } else {
-          alert('Error al borrar la imagen');
-        }
-        console.log(error);
+        console.error(error);
+        alert("Error al borrar la imagen");
       }
     });
   }
-
 }

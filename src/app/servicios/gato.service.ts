@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Breed, image } from '../interfaces/image';
 
 @Injectable({
@@ -33,10 +33,11 @@ export class GatoService {
 
     return this.http.post('https://api.thecatapi.com/v1/images/upload', formData, { headers });
   }
-  borrarImagenPorId(id: string) {
+
+  borrarImagenPorId(id:string){
     const headers = new HttpHeaders({
       'x-api-key': this.x_api_key
     });
-    return this.http.delete('https://api.thecatapi.com/v1/images/' + id, { headers });
+    return  this.http.delete('https://api.thecatapi.com/v1/images/'+id,{headers});
   }
 }
