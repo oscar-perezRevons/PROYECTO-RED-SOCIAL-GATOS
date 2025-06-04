@@ -1,7 +1,7 @@
 
 export interface Breed {
   adaptability:number;
-  id: number;
+  id: string;
   origin:string;
   name: string;
   weight: string;

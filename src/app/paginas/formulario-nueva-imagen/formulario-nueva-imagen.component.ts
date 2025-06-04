@@ -24,17 +24,15 @@ export class FormularioNuevaImagenComponent {
       const formData = new FormData();
       formData.append('file', this.selectedFile, this.selectedFile.name);
       console.log(this.selectedFile.name);
-      formData.append('sub_id', 'kitty123456');
+      formData.append('sub_id', this.selectedFile.name);
       formData.append('breed_ids', 'unknown');
+      // formData.append('breeds[0].name',toString(name));
 
       this.imagenService.postearNuevaImagen(formData).subscribe({
         next: (res) => {alert('Subida de imagen exitosa '), console.log('Éxito ',res)},
         error: (error) => {
-          if (error.status === 400) {
-          alert('Error: No puedes eliminar imágenes que no subiste');
-        } else {
-          alert('Error al subir la imagen');
-        }
+           alert('Error al subir la imagen');
+
         console.log(error);
         }
       });

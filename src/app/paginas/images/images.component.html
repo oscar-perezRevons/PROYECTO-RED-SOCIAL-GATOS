@@ -1,4 +1,6 @@
 <div id="barra">
+  <input type="text" [(ngModel)]="razaInput" placeholder="Ingrese la raza gatuna">
+  <button (click)="buscarImagenPorRaza()" class="search">Buscar raza</button>
   <input type="text" [(ngModel)]="idInput" placeholder="Ingrese ID">
   <button (click)="buscarImagen()" class="search">Buscar por id</button>
   <button (click)="borrarImagen()" class="search">Borrar por id</button>
@@ -6,17 +8,16 @@
   <button id="add" [routerLink]="'/formulario-nueva-imagen'">+</button>
 
 </div>
-
-<div *ngIf="imageUrl">
-  <img [src]="imageUrl" alt="Imagen obtenida">
-</div>
+<!-- get dada una raza -->
 <div class="carrusel" *ngIf="tengoImgsSubidas">
   <h2>Todas las imágenes que subí</h2> <br>
+
   <div>
       
       @for (imagen of listaDeMisImagenes; track imagen.id) {
 
         <img src="{{imagen.url}}" alt="Imagen">
+        <button (click)="borrarImagen(imagen.id)" class="search">Borrar</button>
         <h3>id: {{imagen.id}} <br>
         </h3>
 
@@ -25,6 +26,18 @@
       }
   </div>
 </div>
+
+<div *ngIf="imageUrl">
+  <img [src]="imageUrl" alt="Imagen obtenida">
+</div>
+<div class="carrusel"  *ngIf="listaDeImagenesRazas.length > 0">
+  <h2>Imágenes de la raza "{{razaInput}}"</h2>
+  <div class="image-container">
+    <img *ngFor="let imagen of listaDeImagenesRazas" [src]="imagen" alt="Imagen de gato">
+  </div>
+</div>
+
+
 <div class="carrusel">
   <h2>Todas las imágenes</h2> <br>
   <div>
