@@ -1,9 +1,22 @@
+<<<<<<< HEAD
 <!-- perro.component.html 
 <div *ngIf="">
+=======
+<div *ngIf="Imagen">
+>>>>>>> 4a475f62e41f530041b6516310283584440896f7
   <img [src]="Imagen.url" [alt]="Imagen.breeds[0]?.name" width="300" />
 
-  <h2>{{ Imagen.breeds[0]?.name }}</h2>
+  <div *ngIf="Imagen.breeds.length > 0; else sinRaza">
+    <h2>{{ Imagen.breeds[0]?.name }}</h2>
+    <ul>
+      <li><strong>Peso:</strong> {{ Imagen.breeds[0]?.weight }}</li>
+      <li><strong>Altura:</strong> {{   Imagen.breeds[0]?.height }}</li>
+      <li><strong>Esperanza de vida:</strong> {{ Imagen.breeds[0]?.life_span }}</li>
+      <li><strong>Grupo:</strong> {{ Imagen.breeds[0]?.breed_group }}</li>
+    </ul>
+  </div>
 
+<<<<<<< HEAD
   <ul>
     <li><strong>Peso:</strong> {{ Imagen.breeds[0]?.weight }}</li>
     <li><strong>Altura:</strong> {{ Imagen.breeds[0]?.height }}</li>
@@ -11,3 +24,9 @@
     <li><strong>Grupo:</strong> {{ Imagen.breeds[0]?.breed_group }}</li>
   </ul>
 </div>-->
+=======
+  <ng-template #sinRaza>
+    <p><em>Sin información de raza disponible.</em></p>
+  </ng-template>
+</div>
+>>>>>>> 4a475f62e41f530041b6516310283584440896f7

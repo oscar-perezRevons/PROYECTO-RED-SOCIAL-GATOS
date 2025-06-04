@@ -8,9 +8,11 @@ import { VotesPageComponent } from './components/vote/votes-page.component';
 import { DetalleVotoComponent } from './paginas/detalle-voto/detalle-voto.component';
 import { AddVotoComponent } from './paginas/add-voto/add-voto.component';
 import { EditVotoComponent } from './paginas/edit-voto/edit-voto.component';
+import { FormularioNuevaImagenComponent } from './paginas/formulario-nueva-imagen/formulario-nueva-imagen.component';
 
 export const routes: Routes = [
     { path: 'images', component: ImagesComponent },
+    { path: 'formulario-nueva-imagen', component: FormularioNuevaImagenComponent },
     { path: 'razas', component: RazasComponent },
     { path: 'detalles-raza/:id', component: DetallesRazaComponent },
     { path: 'filtrar-razas/:raza', component: FiltrarRazasComponent },
@@ -22,5 +24,4 @@ export const routes: Routes = [
     { path: '', redirectTo: 'images', pathMatch: 'full' },
     { path: '**', component: PaginaNoEncontradaComponentComponent }
 ];
-
 
