@@ -2,8 +2,6 @@
   <input type="text" [(ngModel)]="razaInput" placeholder="Ingrese la raza gatuna">
   <button (click)="buscarImagenPorRaza()" class="search">Buscar raza</button>
   <input type="text" [(ngModel)]="idInput" placeholder="Ingrese ID">
-  <button (click)="buscarImagen()" class="search">Buscar por id</button>
-  <button (click)="borrarImagen()" class="search">Borrar por id</button>
   <button (click)="getMisImags()" id="my_images">Ver mis imágenes subidas</button>
   <button id="add" [routerLink]="'/formulario-nueva-imagen'">+</button>
 

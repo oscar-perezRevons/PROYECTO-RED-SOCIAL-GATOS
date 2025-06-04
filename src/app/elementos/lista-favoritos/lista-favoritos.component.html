@@ -1,10 +1,10 @@
 <div *ngIf="favourites.length; else cargando" class="favoritos-lista">
   <div *ngFor="let fav of favourites" class="favorito-card">
-    <img [src]="fav.image.url" alt="gato favorito" />
-    <button (click)="eliminarFavorito(fav.id)">Eliminar de favoritos</button>
+    <img [src]="fav.image.url" alt="Gato favorito" />
+    <button (click)="eliminarFavorito(fav.id)">🗑 Eliminar</button>
   </div>
 </div>
 
 <ng-template #cargando>
-  <p>Cargando favoritos...</p>
+  <p class="cargando-texto">Cargando favoritos...</p>
 </ng-template>
