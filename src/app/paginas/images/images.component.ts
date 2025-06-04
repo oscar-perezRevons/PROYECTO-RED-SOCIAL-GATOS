@@ -4,11 +4,13 @@ import { GatoService } from '../../servicios/gato.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { ImageComponent } from "../../elementos/image/image.component";
+import { FavouritesService } from '../../services/favourites.service';
 
 @Component({
   selector: 'app-images',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, ImageComponent],
   templateUrl: './images.component.html',
   styleUrl: './images.component.scss'
 })
@@ -21,6 +23,7 @@ export class ImagesComponent {
   idInput: string = '';
   tengoImgsSubidas: boolean = false;
   private router = inject(Router);
+  favouritesService = inject(FavouritesService);
 
   constructor() {
     this.imagenService.obtenerTodasLasImagenes().subscribe(
@@ -88,5 +91,19 @@ export class ImagesComponent {
       }
     });
   }
+
+    agregarAFavoritos(imageId: string) {
+    this.favouritesService.addFavourite(imageId).subscribe({
+      next: (res) => {
+        console.log("Agregado a favoritos:", res);
+        alert("Imagen agregada a favoritos");
+      },
+      error: (err) => {
+        console.error("Error al agregar a favoritos:", err);
+        alert("No se pudo agregar a favoritos");
+      }
+    });
+  }
+
 
 }

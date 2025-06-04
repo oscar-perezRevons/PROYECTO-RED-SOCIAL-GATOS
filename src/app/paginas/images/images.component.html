@@ -36,6 +36,7 @@
       origin: {{imagen.breeds[0].origin}} <br>
       temperament: {{imagen.breeds[0].temperament}}
     </h3>
+    <button (click)="agregarAFavoritos(imagen.id)">Agregar a favoritos ❤️</button>
     } @empty {
     <h2>No existen imágenes de gatos</h2>
     }

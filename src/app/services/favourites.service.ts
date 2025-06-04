@@ -21,18 +21,19 @@ export class FavouritesService {
   }
 
   addFavourite(imageId: string): Observable<any> {
-  const headers = new HttpHeaders({
-    'x-api-key': this.apiKey,
-    'Content-Type': 'application/json'
-  });
+    const headers = new HttpHeaders({
+      'x-api-key': this.apiKey,
+      'Content-Type': 'application/json'
+    });
 
-  const body = {
-    image_id: imageId,
-    sub_id: this.subId
-  };
+    const body = {
+      image_id: imageId,
+      sub_id: this.subId
+    };
 
-  return this.http.post(this.apiUrl, body, { headers });
-}
+    return this.http.post(this.apiUrl, body, { headers });
+  }
+
 
 }
 
