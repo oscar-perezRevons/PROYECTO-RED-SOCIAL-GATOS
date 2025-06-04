@@ -1,0 +1,24 @@
+<h2>Agregar Voto 🐾</h2>
+<form (ngSubmit)="agregarVoto()" #formVoto="ngForm" class="formulario">
+
+    <label>Sub ID (nombre):</label>
+    <input type="text" name="sub_id" [(ngModel)]="nuevoVoto.sub_id" required />
+
+    <label>Puntaje (1–5):</label>
+    <input type="number" name="value" [(ngModel)]="nuevoVoto.value" min="1" max="5" required />
+
+    <label>Código de país (ej. MX, US):</label>
+    <input type="text" name="country_code" [(ngModel)]="nuevoVoto.country_code" required />
+
+    <div>
+        <h3>Selecciona una imagen de gato</h3>
+        <div class="imagenes-gatos">
+            <div *ngFor="let img of catImages" class="imagen-container"
+                [class.selected]="imagenSeleccionada?.id === img.id" (click)="seleccionarImagen(img)">
+                <img [src]="img.url" alt="Gato" />
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="formVoto.invalid || !imagenSeleccionada">Guardar Voto</button>
+</form>

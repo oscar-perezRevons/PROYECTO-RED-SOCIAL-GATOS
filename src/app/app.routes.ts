@@ -5,19 +5,24 @@ import { FormularioNuevaImagenComponent } from './paginas/formulario-nueva-image
 import { RazasComponent } from './paginas/razas/razas.component';
 import { DetallesRazaComponent } from './paginas/detalles-raza/detalles-raza.component';
 import { FiltrarRazasComponent } from './paginas/filtrar-razas/filtrar-razas.component';
-import { VotesPageComponent } from './paginas/votes-page/votes-page.component';
-import { VoteDetailComponent } from './paginas/vote-detail/vote-detail.component';
+import { VotesPageComponent } from './components/votes-page/votes-page.component';
+import { DetalleVotoComponent } from './paginas/detalle-voto/detalle-voto.component';
 import { FavoritosComponent } from './paginas/favoritos/favoritos.component';
+import { AddVotoComponent } from './paginas/add-voto/add-voto.component';
+import { EditVotoComponent } from './paginas/edit-voto/edit-voto.component';
 
 export const routes: Routes = [
   { path: 'favoritos', component: FavoritosComponent },
-    {path:'images',component: ImagesComponent},
-  {path: 'formulario-nueva-imagen',component:FormularioNuevaImagenComponent},
-    {path:'razas',component: RazasComponent},
-    {path:'detalles-raza/:id',component: DetallesRazaComponent},
-    {path:'filtrar-razas/:raza', component: FiltrarRazasComponent},
+  { path: 'images', component: ImagesComponent },
+  { path: 'formulario-nueva-imagen', component: FormularioNuevaImagenComponent },
+  { path: 'razas', component: RazasComponent },
+  { path: 'detalles-raza/:id', component: DetallesRazaComponent },
+  { path: 'filtrar-razas/:raza', component: FiltrarRazasComponent },
   { path: 'votos', component: VotesPageComponent },
-    { path: 'votos/:id', component: VoteDetailComponent },
-    {path: '', redirectTo: 'images', pathMatch: 'full' },
-    {path:'**', component: PaginaNoEncontradaComponentComponent}
+  { path: 'voto-por-subid/:sub_id', component: DetalleVotoComponent },
+  { path: 'voto-por-id/:id', component: DetalleVotoComponent },
+  { path: 'agregar-voto', component: AddVotoComponent },
+  { path: 'editar-voto/:id', component: EditVotoComponent },
+  { path: '', redirectTo: 'images', pathMatch: 'full' },
+  { path: '**', component: PaginaNoEncontradaComponentComponent }
 ];
