@@ -1,6 +1,9 @@
 <div id="barra">
   <input type="text" [(ngModel)]="razaInput" placeholder="Ingrese la raza gatuna">
   <button (click)="buscarImagenPorRaza()" class="search">Buscar raza</button>
+  <input type="text" [(ngModel)]="idInput" placeholder="Ingrese ID">
+  <button (click)="buscarImagen()" class="search">Buscar por id</button>
+  <button (click)="borrarImagen()" class="search">Borrar por id</button>
   <button (click)="getMisImags()" id="my_images">Ver mis imágenes subidas</button>
   <button id="add" [routerLink]="'/formulario-nueva-imagen'">+</button>
 
@@ -15,6 +18,9 @@
 
         <img src="{{imagen.url}}" alt="Imagen">
         <button (click)="borrarImagen(imagen.id)" class="search">Borrar</button>
+        <h3>id: {{imagen.id}} <br>
+        </h3>
+
       } @empty {
       <h2>No existen imágenes de gatos subidas por el usuario</h2>
       }
@@ -43,6 +49,7 @@
       origin: {{imagen.breeds[0].origin}} <br>
       temperament: {{imagen.breeds[0].temperament}}
     </h3>
+    <button (click)="agregarAFavoritos(imagen.id)">Agregar a favoritos ❤️</button>
     } @empty {
     <h2>No existen imágenes de gatos</h2>
     }

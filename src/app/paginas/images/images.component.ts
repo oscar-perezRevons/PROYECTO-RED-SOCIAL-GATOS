@@ -4,6 +4,7 @@ import { GatoService } from '../../servicios/gato.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { FavouritesService } from '../../services/favourites.service';
 
 @Component({
   selector: 'app-images',
@@ -25,6 +26,7 @@ export class ImagesComponent {
   tengoImgsSubidas: boolean = false;
   subIdInput: string = '';
   private router = inject(Router);
+  favouritesService = inject(FavouritesService);
 
   constructor() {
 
@@ -102,4 +104,18 @@ export class ImagesComponent {
       }
     });
   }
+
+    agregarAFavoritos(imageId: string) {
+    this.favouritesService.addFavourite(imageId).subscribe({
+      next: (res) => {
+        console.log("Agregado a favoritos:", res);
+        alert("Imagen agregada a favoritos");
+      },
+      error: (err) => {
+        console.error("Error al agregar a favoritos:", err);
+        alert("No se pudo agregar a favoritos");
+      }
+    });
+  }
+
 }
