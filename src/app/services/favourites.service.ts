@@ -34,6 +34,13 @@ export class FavouritesService {
     return this.http.post(this.apiUrl, body, { headers });
   }
 
+  eliminarFavorito(favouriteId: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'x-api-key': this.apiKey
+    });
+
+    return this.http.delete(`${this.apiUrl}/${favouriteId}`, { headers });
+  }
 
 }
 
