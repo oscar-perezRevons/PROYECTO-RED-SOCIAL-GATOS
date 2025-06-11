@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
-import { image } from '../../interfaces/image';
-import { GatoService } from '../../servicios/gato.service';
+import { image } from '../../models/image.model';
+import { GatoService } from '../../services/gato.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -105,7 +105,7 @@ export class ImagesComponent {
     });
   }
 
-    agregarAFavoritos(imageId: string) {
+  agregarAFavoritos(imageId: string) {
     this.favouritesService.addFavourite(imageId).subscribe({
       next: (res) => {
         console.log("Agregado a favoritos:", res);

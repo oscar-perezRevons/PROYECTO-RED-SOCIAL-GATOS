@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VoteService } from '../../services/vote.service';
-import { Vote } from '../../interfaces/vote';
+import { Vote } from '../../models/vote.model';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 

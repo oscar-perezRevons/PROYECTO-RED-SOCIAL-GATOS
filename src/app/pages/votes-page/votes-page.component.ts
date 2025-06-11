@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { VoteListComponent } from '../../paginas/vote-list/vote-list.component';
+import { VoteListComponent } from '../vote-list/vote-list.component';
 
 @Component({
   selector: 'app-votes-page',

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RazaComponent } from '../../elementos/raza/raza.component';
-import { RazaService } from '../../servicios/raza.service';
-import { Breed } from '../../interfaces/breed';
+import { RazaService } from '../../services/raza.service';
+import { Breed } from '../../models/breed.model';
 
 import { Router } from '@angular/router';//prueba
 

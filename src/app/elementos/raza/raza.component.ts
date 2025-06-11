@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Breed } from '../../interfaces/breed';
+import { Breed } from '../../models/breed.model';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -9,5 +9,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './raza.component.scss'
 })
 export class RazaComponent {
-  @Input() raza!: Breed; 
+  @Input() raza!: Breed;
 }
