@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Breed } from '../interfaces/breed';
+import { Breed } from '../models/breed.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 

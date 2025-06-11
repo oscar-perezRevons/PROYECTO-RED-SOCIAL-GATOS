@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VoteService } from '../../services/vote.service';
-import { Vote } from '../../interfaces/vote';
+import { Vote } from '../../models/vote.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

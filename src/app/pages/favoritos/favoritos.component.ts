@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListaFavoritosComponent } from "../../elementos/lista-favoritos/lista-favoritos.component";
+import { ListaFavoritosComponent } from "../lista-favoritos/lista-favoritos.component";
 import { FavouritesService } from '../../services/favourites.service';
 
 @Component({
