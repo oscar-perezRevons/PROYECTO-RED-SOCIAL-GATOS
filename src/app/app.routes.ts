@@ -10,6 +10,7 @@ import { DetalleVotoComponent } from './paginas/detalle-voto/detalle-voto.compon
 import { FavoritosComponent } from './paginas/favoritos/favoritos.component';
 import { AddVotoComponent } from './paginas/add-voto/add-voto.component';
 import { EditVotoComponent } from './paginas/edit-voto/edit-voto.component';
+import { BreedListComponent } from './components/breed-list/breed-list.component';
 
 export const routes: Routes = [
   { path: 'favoritos', component: FavoritosComponent },
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'voto-por-id/:id', component: DetalleVotoComponent },
   { path: 'agregar-voto', component: AddVotoComponent },
   { path: 'editar-voto/:id', component: EditVotoComponent },
+  { path: 'breeds', component: BreedListComponent },
   { path: '', redirectTo: 'images', pathMatch: 'full' },
   { path: '**', component: PaginaNoEncontradaComponentComponent }
 ];
