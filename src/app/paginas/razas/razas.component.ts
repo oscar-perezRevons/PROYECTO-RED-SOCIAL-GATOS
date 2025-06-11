@@ -13,14 +13,14 @@ import { Router } from '@angular/router';//prueba
 })
 export class RazasComponent {
   listaDeRazas: Breed[] = [];
-  razaService: RazaService = inject(RazaService); 
-  constructor() {  
-    this.razaService.obtenerTodasLasRazas().subscribe( data => this.listaDeRazas = data, 
-    error => console.log('HAY UN ERROR'), 
-    () => console.log('FIN')  )
-  } 
+  razaService: RazaService = inject(RazaService);
+  constructor() {
+    this.razaService.obtenerTodasLasRazas().subscribe(data => this.listaDeRazas = data,
+      error => console.log('HAY UN ERROR'),
+      () => console.log('FIN'))
+  }
 
-  
+
   router = inject(Router);  //prueba
   buscarRaza(nombre: string) {
     if (nombre.trim()) {
