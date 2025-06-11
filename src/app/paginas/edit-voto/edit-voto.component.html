@@ -1,0 +1,33 @@
+<h2>Editar Voto </h2>
+<div *ngIf="voto; else loading">
+    <form (ngSubmit)="onSubmit()" #editVotoForm="ngForm">
+        <label>
+            Nombre del gato:
+            <input type="text" [(ngModel)]="voto.sub_id" name="sub_id" required />
+        </label>
+        <br />
+
+        <label>
+            Puntaje:
+            <input type="number" [(ngModel)]="voto.value" name="value" min="1" max="5" required />
+        </label>
+        <br />
+
+        <label>
+            País:
+            <input type="text" [(ngModel)]="voto.country_code" name="country_code" required />
+        </label>
+        <br />
+
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <div *ngIf="voto.image_url">
+        <h3>Imagen actual:</h3>
+        <img [src]="voto.image_url" alt="Imagen del gato" width="200" />
+    </div>
+</div>
+
+<ng-template #loading>
+    <p>Cargando voto...</p>
+</ng-template>
