@@ -1,23 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Breed } from '../models/breed.model';
+import { Breed } from '../models/breed.model';//
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { Observable, map } from 'rxjs';//
 
 @Injectable({
   providedIn: 'root'
 })
 export class RazaService {
-  url = 'https://api.thecatapi.com/v1/breeds';
-  url_raza = 'https://api.thecatapi.com/v1/breeds/search?q=';//
+
+  private apiUrl = `${environment.apiUrl}/api/breeds`;
+  
   constructor(private http: HttpClient) { }
 
-  obtenerTodasLasRazas(): Observable<Breed[]> {
-    return this.http.get<Breed[]>(this.url)
+  getBreeds(): Observable<Breed[]> {
+    return this.http.get<Breed[]>(this.apiUrl)
   }
-  obtenerRazaPorId(id: string): Observable<Breed> {
-    return this.http.get<Breed>(this.url + '/' + id)
+
+  createBreed(breed: { name_breed: string, origin_breed: string, description_breed: string }): Observable<Breed> {
+    return this.http.post<Breed>(this.apiUrl, breed);
   }
-  obtenerRazas(raza: string): Observable<Breed[]> { //
-    return this.http.get<Breed[]>(this.url_raza + raza + '&attach_image=1')
+
+  updateBreed(id: number, breed: { name_breed: string, origin_breed: string, description_breed: string }): Observable<Breed> {
+    return this.http.put<Breed>(`${this.apiUrl}/${id}`, breed);
   }
+
+  deleteBreed(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  getBreedByIdLocal(id: number): Observable<Breed | undefined> {
+    return this.getBreeds().pipe(
+      map(breeds => breeds.find(b => b.id_breed === id))
+    );
+  }
+
 }

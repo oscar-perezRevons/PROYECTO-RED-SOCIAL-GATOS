@@ -1,13 +1,17 @@
-<nav class="buscador-nav"> <!--prueba-->
-    <input #campoBusqueda type="text" placeholder="Buscar raza" class="input-busqueda" />
-    <button (click)="buscarRaza(campoBusqueda.value)" class="boton-busqueda">Buscar</button>
-</nav>
-<div class="contenedor-razas">
-    @for ( raza of listaDeRazas; track raza.id){
+<a routerLink="/agregar-raza" class="agregar-raza-btn">Agregar nueva raza</a>
+<div *ngIf="listaDeRazas.length; else cargando" class="contenedor-razas">
+    @for ( raza of listaDeRazas; track raza.id_breed){
     <div>
         <app-raza [raza]="raza"></app-raza>
+        <button (click)="eliminarRaza(raza.id_breed)">🗑 Eliminar</button>
+        <button [routerLink]="['/editar-raza', raza.id_breed]">Editar raza</button>
+
     </div>
     } @empty {
     <p>No existen razas</p>
     }
 </div>
+
+<ng-template #cargando>
+  <p class="cargando-texto">Cargando razas...</p>
+</ng-template>

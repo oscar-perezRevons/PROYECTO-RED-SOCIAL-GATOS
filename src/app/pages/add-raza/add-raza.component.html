@@ -1,0 +1,15 @@
+<h2>Agregar Raza 🐱</h2>
+<form (ngSubmit)="agregarRaza()" #formRaza="ngForm" class="formulario">
+
+  <label>Nombre de la raza:</label>
+  <input type="text" name="name_breed" [(ngModel)]="nuevaRaza.name_breed" required />
+
+  <label>Origen de la raza:</label>
+  <input type="text" name="origin_breed" [(ngModel)]="nuevaRaza.origin_breed" required />
+
+  <label>Descripción:</label>
+  <textarea name="description_breed" [(ngModel)]="nuevaRaza.description_breed" rows="4" required></textarea>
+
+  <button type="submit" [disabled]="formRaza.invalid">Guardar Raza</button>
+</form>
+
