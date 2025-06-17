@@ -1,22 +1,11 @@
 <div class="contenedor-raza">
-  <h2 class="titulo">{{ raza.name }}</h2>
-
-  <div class="contenedor-imagen">
-    <!--<img [src]="raza.image.url" alt="Imagen de la raza {{ raza.name }}"> ERROR -->
-    <img [src]="'https://cdn2.thecatapi.com/images/' + raza.reference_image_id + '.jpg'"
-      alt="Imagen de la raza {{ raza.name }}">
-  </div>
+  <h2 class="titulo">{{ raza.name_breed }}</h2>
 
   <div>
     <span class="clasificacion-titulo">Origen:</span>
-    <span>{{ raza.origin }}</span>
+    <span>{{ raza.origin_breed }}</span>
   </div>
+  <p>{{ raza.description_breed }}</p>
 
-  <p>{{ raza.description }}</p>
-
-  <div>
-    <span>Esperanza de vida:</span>
-    <span>{{ raza.life_span }} años</span>
-  </div>
-  <a [routerLink]="['/detalles-raza', raza.id]">Ver detalles</a>
+  <!--<a [routerLink]="['/detalles-raza', raza.id_breed]">Ver detalles</a>-->
 </div>

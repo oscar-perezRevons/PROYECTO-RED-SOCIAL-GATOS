@@ -1,0 +1,31 @@
+<h2>Editar Raza 🐱</h2>
+
+<div *ngIf="raza; else loading">
+  <form (ngSubmit)="onSubmit()" #editRazaForm="ngForm" class="formulario">
+
+    <label>
+      Nombre de la raza:
+      <input type="text" [(ngModel)]="raza.name_breed" name="name_breed" required />
+    </label>
+    <br />
+
+    <label>
+      Origen de la raza:
+      <input type="text" [(ngModel)]="raza.origin_breed" name="origin_breed" required />
+    </label>
+    <br />
+
+    <label>
+      Descripción:
+      <textarea [(ngModel)]="raza.description_breed" name="description_breed" rows="4" required></textarea>
+    </label>
+    <br />
+
+    <button type="submit">Actualizar Raza</button>
+  </form>
+</div>
+
+<ng-template #loading>
+  <p>Cargando datos de la raza...</p>
+</ng-template>
+
