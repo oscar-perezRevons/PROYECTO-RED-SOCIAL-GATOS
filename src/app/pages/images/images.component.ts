@@ -13,109 +13,123 @@ import { FavouritesService } from '../../services/favourites.service';
   templateUrl: './images.component.html',
   styleUrl: './images.component.scss'
 })
-export class ImagesComponent {
-  // @Input()Imagen!:image;
-  listaDeImagenes: image[] = [];
-  listaDeImagenesRazas: string[] = [];
-  listaDeMisImagenes: image[] = [];
+export class ImagesComponent{
+  listaDeImagenes: image[]=[];
   imagenService: GatoService = inject(GatoService);
-  imageUrl: string = '';
-  idInput: string = '';
-  razaInput: string = '';
-  imagenes: string[] = [];
-  tengoImgsSubidas: boolean = false;
-  subIdInput: string = '';
-  private router = inject(Router);
-  favouritesService = inject(FavouritesService);
-
-  constructor() {
-
-    this.imagenService.obtenerTodasLasImagenes().subscribe(
-      data => {
-        this.listaDeImagenes = data.map(imagen => {
-          return {
-            ...imagen,
-            name: imagen.breeds.length > 0 ? imagen.breeds[0].name : "Sin raza"
-          };
-        });
-
-        console.log("mis datos", this.listaDeImagenes);
+  constructor(){
+    this.imagenService.getAllTheImages().subscribe(
+      data=>{
+        this.listaDeImagenes=data;
+        console.log('mis imágenes recibidas del get: ',data);
       },
-      error => console.log(error),
-      () => console.log('FIN')
+       error => console.log(error),
+       () => console.log('FIN')
     );
   }
-
-  buscarImagenPorRaza() {
-    if (this.razaInput.trim() === '') {
-      alert('Ingresa el nombre de una raza para buscar imágenes');
-      return;
-    }
-
-    this.imagenService.obtenerIdPorNombre(this.razaInput).subscribe({
-      next: breeds => {
-        if (breeds.length > 0) {
-          const idRaza = breeds[0].id;
-          this.imagenService.obtenerImagenesPorRaza(idRaza).subscribe({
-            next: imagenes => {
-              this.listaDeImagenesRazas = imagenes.map(img => img.url);
-              console.log("Imágenes obtenidas:", this.listaDeImagenesRazas);
-            },
-            error: error => console.log("Error al obtener imágenes", error)
-          });
-        } else {
-          alert("No se encontró la raza ingresada");
-        }
-      },
-      error: error => console.log("Error al obtener el ID de la raza", error)
-    });
-  }
-
-  irAFormulario() {
-    this.router.navigate(['/formulario-nueva-imagen']);
-  }
-  getMisImags() {
-    this.imagenService.obtenerTodasMisImagenes().subscribe(
-      data => {
-        console.log("Las imágenes que subí", data);
-        this.listaDeMisImagenes = data;
-        this.tengoImgsSubidas = data.length > 0;
-      },
-      error => {
-        alert("Error al mostrar mis imágenes");
-        console.log(error);
-      },
-      () => console.log('FIN')
-    );
-  }
-  // componente.ts
-  borrarImagen(id: string) {
-    this.imagenService.borrarImagenPorId(id).subscribe({
-      next: data => {
-        console.log("Imagen eliminada con éxito: ", data);
-        alert("Imagen eliminada con éxito");
-
-        // Actualizar la lista después de la eliminación
-        this.listaDeMisImagenes = this.listaDeMisImagenes.filter(img => img.id !== id);
-      },
-      error: error => {
-        console.error(error);
-        alert("Error al borrar la imagen");
-      }
-    });
-  }
-
-  agregarAFavoritos(imageId: string) {
-    this.favouritesService.addFavourite(imageId).subscribe({
-      next: (res) => {
-        console.log("Agregado a favoritos:", res);
-        alert("Imagen agregada a favoritos");
-      },
-      error: (err) => {
-        console.error("Error al agregar a favoritos:", err);
-        alert("No se pudo agregar a favoritos");
-      }
-    });
-  }
-
 }
+// export class ImagesComponent {
+//   // @Input()Imagen!:image;
+//   listaDeImagenes: image[] = [];
+//   listaDeImagenesRazas: string[] = [];
+//   listaDeMisImagenes: image[] = [];
+//   imagenService: GatoService = inject(GatoService);
+//   imageUrl: string = '';
+//   idInput: string = '';
+//   razaInput: string = '';
+//   imagenes: string[] = [];
+//   tengoImgsSubidas: boolean = false;
+//   subIdInput: string = '';
+//   private router = inject(Router);
+//   favouritesService = inject(FavouritesService);
+
+//   constructor() {
+
+//     this.imagenService.obtenerTodasLasImagenes().subscribe(
+//       data => {
+//         this.listaDeImagenes = data.map(imagen => {
+//           return {
+//             ...imagen,
+//             name: imagen.breeds.length > 0 ? imagen.breeds[0].name : "Sin raza"
+//           };
+//         });
+
+//         console.log("mis datos", this.listaDeImagenes);
+//       },
+//       error => console.log(error),
+//       () => console.log('FIN')
+//     );
+//   }
+
+//   buscarImagenPorRaza() {
+//     if (this.razaInput.trim() === '') {
+//       alert('Ingresa el nombre de una raza para buscar imágenes');
+//       return;
+//     }
+
+//     this.imagenService.obtenerIdPorNombre(this.razaInput).subscribe({
+//       next: breeds => {
+//         if (breeds.length > 0) {
+//           const idRaza = breeds[0].id;
+//           this.imagenService.obtenerImagenesPorRaza(idRaza).subscribe({
+//             next: imagenes => {
+//               this.listaDeImagenesRazas = imagenes.map(img => img.url);
+//               console.log("Imágenes obtenidas:", this.listaDeImagenesRazas);
+//             },
+//             error: error => console.log("Error al obtener imágenes", error)
+//           });
+//         } else {
+//           alert("No se encontró la raza ingresada");
+//         }
+//       },
+//       error: error => console.log("Error al obtener el ID de la raza", error)
+//     });
+//   }
+
+//   irAFormulario() {
+//     this.router.navigate(['/formulario-nueva-imagen']);
+//   }
+//   getMisImags() {
+//     this.imagenService.obtenerTodasMisImagenes().subscribe(
+//       data => {
+//         console.log("Las imágenes que subí", data);
+//         this.listaDeMisImagenes = data;
+//         this.tengoImgsSubidas = data.length > 0;
+//       },
+//       error => {
+//         alert("Error al mostrar mis imágenes");
+//         console.log(error);
+//       },
+//       () => console.log('FIN')
+//     );
+//   }
+//   // componente.ts
+//   borrarImagen(id: string) {
+//     this.imagenService.borrarImagenPorId(id).subscribe({
+//       next: data => {
+//         console.log("Imagen eliminada con éxito: ", data);
+//         alert("Imagen eliminada con éxito");
+
+//         // Actualizar la lista después de la eliminación
+//         this.listaDeMisImagenes = this.listaDeMisImagenes.filter(img => img.id !== id);
+//       },
+//       error: error => {
+//         console.error(error);
+//         alert("Error al borrar la imagen");
+//       }
+//     });
+//   }
+
+//   agregarAFavoritos(imageId: string) {
+//     this.favouritesService.addFavourite(imageId).subscribe({
+//       next: (res) => {
+//         console.log("Agregado a favoritos:", res);
+//         alert("Imagen agregada a favoritos");
+//       },
+//       error: (err) => {
+//         console.error("Error al agregar a favoritos:", err);
+//         alert("No se pudo agregar a favoritos");
+//       }
+//     });
+//   }
+
+// }

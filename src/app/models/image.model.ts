@@ -12,11 +12,7 @@ export interface Breed {
 }
 
 export interface image {
-  id: string;
-  url: string;
-  width: number;
-  height: number;
-  mime_type: string;
-  breeds: Breed[];
-  categories: any[];
+  id_image:number;
+  url_image:string;
+   name_breed: string;
 }
