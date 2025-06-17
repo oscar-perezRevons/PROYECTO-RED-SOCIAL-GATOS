@@ -13,6 +13,9 @@ export class GatoService {
   getAllTheImages():Observable<image[]>{
     return this.http.get<image[]>(this.apiUrl)
   }
+  deleteImage(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 
   // x_api_key: string = 'live_WtsFWeZr9v74GB0bugCPGXOIHdFsdrRrpS7LfbpzQo88L0SBAxSGryUb1obFzPPK';
   // constructor(private http: HttpClient) { }

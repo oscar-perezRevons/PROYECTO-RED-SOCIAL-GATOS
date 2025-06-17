@@ -26,6 +26,14 @@ export class ImagesComponent{
        () => console.log('FIN')
     );
   }
+   deleteImage(id: number) {
+    this.imagenService.deleteImage(id).subscribe(() => {
+      this.listaDeImagenes = this.listaDeImagenes.filter(imagen => imagen.id_image !== id);
+      console.log("Imagen eliminada correctamente");
+      alert("Imagen eliminada correctamente");
+    });
+  }
+
 }
 // export class ImagesComponent {
 //   // @Input()Imagen!:image;
