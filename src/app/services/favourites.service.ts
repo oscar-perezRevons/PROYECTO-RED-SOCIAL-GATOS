@@ -1,45 +1,32 @@
 import { Injectable } from '@angular/core'; 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavouritesService {
-  private apiUrl = 'https://api.thecatapi.com/v1/favourites';
-  private apiKey = 'live_WWWRRE7EESCAaGit4vgQWTcbxYcGqFrLu6DgRJcMg1jQmt7MRuPKbMuDXy3f4yMv';
-  private subId = 'mi_usuario_demo';
+  private apiUrl = `${environment.apiUrl}/api/favourites`; 
+  private id_user = '1';
 
   constructor(private http: HttpClient) {}
 
   getFavourites(): Observable<any> {
-    const headers = new HttpHeaders({
-      'x-api-key': this.apiKey
-    });
-
-    return this.http.get(`${this.apiUrl}?sub_id=${this.subId}`, { headers });
+       return this.http.get(`${this.apiUrl}?sub_id=${this.id_user}`);
   }
 
   addFavourite(imageId: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'x-api-key': this.apiKey,
-      'Content-Type': 'application/json'
-    });
-
-    const body = {
+       const body = {
       image_id: imageId,
-      sub_id: this.subId
+      id_user: this.id_user
     };
 
-    return this.http.post(this.apiUrl, body, { headers });
+    return this.http.post(this.apiUrl, body);
   }
 
   eliminarFavorito(favouriteId: number): Observable<any> {
-    const headers = new HttpHeaders({
-      'x-api-key': this.apiKey
-    });
-
-    return this.http.delete(`${this.apiUrl}/${favouriteId}`, { headers });
+      return this.http.delete(`${this.apiUrl}/${favouriteId}`);
   }
 
 }
