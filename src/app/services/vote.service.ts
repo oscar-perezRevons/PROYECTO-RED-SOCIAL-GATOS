@@ -2,25 +2,28 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vote } from '../models/vote.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class VoteService {
-    private apiUrl = 'https://6838b98d6561b8d882ae0cc6.mockapi.io/votes/datase_votos';
+      private apiUrl = `${environment.apiUrl}/api/votes`
 
     constructor(private http: HttpClient) { }
 
     getVotes(): Observable<Vote[]> {
-        return this.http.get<Vote[]>(this.apiUrl);
+        return this.http.get<Vote[]>(`${this.apiUrl}/`);
     }
 
-    getVotoPorSubId(subId: string): Observable<Vote[]> {
-        return this.http.get<Vote[]>(`${this.apiUrl}?sub_id=${subId}`);
+    getVotoPorSubId(subId: number): Observable<Vote[]> {
+        return this.http.get<Vote[]>(`${this.apiUrl}/by-user/${subId}`);
     }
 
     getVotoPorId(id: number): Observable<Vote> {
-        return this.http.get<Vote>(`${this.apiUrl}/${id}`);
+        return this.http.get<Vote>(`${this.apiUrl}/vote/${id}`);
+        console.log('👉 URL final:', `${this.apiUrl}/vote/${id}`);
+
     }
 
     addVoto(voto: Vote): Observable<Vote> {

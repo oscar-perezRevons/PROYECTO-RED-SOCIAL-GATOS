@@ -2,20 +2,18 @@
 <a routerLink="/agregar-voto" class="agregar-voto-btn">Agregar nuevo voto</a>
 <div class="voto-grid">
     <article *ngFor="let voto of votos" class="voto-card">
-        <img [src]="voto.image_url" alt="Gato" class="gato-img" />
+        <img [src]="voto.url_image" alt="Gato" class="gato-img" />
         <div class="voto-info">
-            <h3>{{ voto.sub_id }}</h3>
-            <p><strong>Puntaje:</strong> {{ voto.value }}/5</p>
-            <p><strong>País:</strong> {{ voto.country_code }}</p>
-            <p><strong>Fecha:</strong> {{ voto.created_at | date: 'medium' }}</p>
+              <p><strong>Puntaje:</strong> {{ voto.value_vote }}/5</p>
+          
             <div class="acciones">
-                <a [routerLink]="['/voto-por-subid', voto.sub_id]" class="detalle-link">
+                <a [routerLink]="['/voto-por-id', voto.id_vote]" class="detalle-link">
                     Ver más
                 </a>
-                <a [routerLink]="['/editar-voto', voto.id]" class="detalle-link">
+                <a [routerLink]="['/editar-voto', voto.id_vote]" class="detalle-link">
                     Editar voto
                 </a>
-                <button (click)="eliminarVoto(voto.id!)" class="eliminar-btn">
+                <button (click)="eliminarVoto(voto.id_vote!)" class="eliminar-btn">
                     Eliminar voto
                 </button>
             </div>

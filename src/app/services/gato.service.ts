@@ -14,6 +14,9 @@ export class GatoService {
     return this.http.get<image[]>(this.apiUrl)
   }
 
+   getImagenPorId(id: number): Observable<image> {
+  return this.http.get<image>(`${this.apiUrl}/${id}`);
+}
   // x_api_key: string = 'live_WtsFWeZr9v74GB0bugCPGXOIHdFsdrRrpS7LfbpzQo88L0SBAxSGryUb1obFzPPK';
   // constructor(private http: HttpClient) { }
   // obtenerTodasLasImagenes(): Observable<image[]> {
