@@ -15,8 +15,10 @@ import { FavouritesService } from '../../services/favourites.service';
 })
 export class ImagesComponent{
   listaDeImagenes: image[]=[];
+  listaDeImagenesPorRaza: image[]=[];
   imagenService: GatoService = inject(GatoService);
   favouritesService: FavouritesService=inject(FavouritesService);
+  breedName:string='';
   constructor(){
     this.imagenService.getAllTheImages().subscribe(
       data=>{
@@ -45,7 +47,19 @@ export class ImagesComponent{
       error => console.error('Error al añadir favorito:', error)
     );
   }
-
+  //get imágenes dada una raza ingresada por el usuario
+  getImagesByBreed(nameBreed:string){
+    this.imagenService.getImagesByBreed(this.breedName.trim()).subscribe({
+      next: (data) => {
+        this.listaDeImagenesPorRaza = data;
+      },
+      error: (err) => {
+        console.error('Error cargando imágenes', err);
+        alert("Error al buscar por raza, verifique que el nombre de la raza esté bien escrito")
+        this.listaDeImagenesPorRaza = [];
+      }
+    });
+  }
 }
 // export class ImagesComponent {
 //   // @Input()Imagen!:image;

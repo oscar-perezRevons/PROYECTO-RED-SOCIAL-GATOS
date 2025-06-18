@@ -1,7 +1,19 @@
 <button id="add" [routerLink]="'/formulario-nueva-imagen'">+</button>
+<!-- Campo de entrada de texto -->
+<input type="text" [(ngModel)]="breedName" placeholder="Ej: Siamese" />
+
+<!-- Botón para buscar -->
+<button (click)="getImagesByBreed(breedName)">Buscar</button>
 <div class="carrusel">
-  <h2>Todas las imágenes</h2> <br>
+  <h2>Todas las imágenes</h2> 
   <div>
+
+<div *ngFor="let img of listaDeImagenesPorRaza">
+  @if (img.id_image===1) {
+    <h2>Imágenes de la raza '{{breedName}}'</h2>
+  }
+  <img [src]="img.url_image" [alt]="img.name_breed" width="300" />
+</div>
 
     @for (imagen of listaDeImagenes; track imagen.id_image) {
     <div class="card-content">
@@ -10,10 +22,8 @@
       <div class="iconos">
         <button class="search">✏️</button>
         <button class="search" (click)="agregarFavorito(imagen.id_image)">❤️</button>
-         <button  class="search" (click)="deleteImage(imagen.id_image)">🗑️</button>
+        <button class="search" (click)="deleteImage(imagen.id_image)">🗑️</button>
       </div>
-
-      <!-- (click)="agregarAFavoritos(imagen.id)" -->
     </div>
     } @empty {
     <h2>No existen imágenes de gatos</h2>

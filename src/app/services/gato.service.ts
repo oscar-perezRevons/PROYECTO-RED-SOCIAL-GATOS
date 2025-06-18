@@ -13,6 +13,9 @@ export class GatoService {
   getAllTheImages(): Observable<image[]> {
     return this.http.get<image[]>(this.apiUrl)
   }
+  getImagesByBreed(breedName: string): Observable<image[]> {
+    return this.http.get<image[]>(`${this.apiUrl}/images/${breedName}`);
+  }
   deleteImage(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
