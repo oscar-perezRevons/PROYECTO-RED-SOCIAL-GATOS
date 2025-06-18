@@ -1,13 +1,49 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { GatoService } from '../../services/gato.service';
 
 @Component({
   selector: 'app-formulario-nueva-imagen',
-  imports: [RouterLink],
   templateUrl: './formulario-nueva-imagen.component.html',
   styleUrl: './formulario-nueva-imagen.component.scss'
 })
-export class FormularioNuevaImagenComponent {} // <--- Asegúrate de que está exportado
+export class FormularioNuevaImagenComponent {
+  selectedFile: File | null = null;
+
+  constructor(private imagenService: GatoService) {}
+
+  onFileSelected(event: Event) {
+      const input = event.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+          this.selectedFile = input.files[0];
+      }
+  }
+
+  async subirInfoForm() {
+      if (!this.selectedFile) {
+          console.error('Debe seleccionar una imagen.');
+          return;
+      }
+
+      const url_image = await this.imagenService.subirImagen(this.selectedFile);
+      if (!url_image) {
+          console.error('Error al subir la imagen.');
+          return;
+      }
+
+      const breed = (document.getElementById('name') as HTMLInputElement).value;
+
+      this.imagenService.enviarDatosBackend(url_image, Number(breed)).subscribe(
+          response => {
+              console.log('Imagen guardada en el backend:', response);
+          },
+          error => {
+              console.error('Error al guardar imagen:', error);
+          }
+      );
+  }
+
+} // <--- Asegúrate de que está exportado
 // import { Component, inject } from '@angular/core';
 // import { GatoService } from '../../services/gato.service';
 // import { RouterLink } from '@angular/router';
