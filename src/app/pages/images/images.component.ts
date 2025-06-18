@@ -3,13 +3,13 @@ import { image } from '../../models/image.model';
 import { GatoService } from '../../services/gato.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router} from '@angular/router';
 import { FavouritesService } from '../../services/favourites.service';
 
 @Component({
   selector: 'app-images',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule],
   templateUrl: './images.component.html',
   styleUrl: './images.component.scss'
 })
