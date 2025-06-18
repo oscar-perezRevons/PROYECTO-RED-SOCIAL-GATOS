@@ -19,7 +19,9 @@ export class ListaFavoritosComponent implements OnInit {
   }
 
   cargarFavoritos(): void {
-    this.favouritesService.getFavourites().subscribe({
+    this.favouritesService.getFavourites(1
+      
+    ).subscribe({
       next: (data) => this.favourites = data,
       error: (err) => console.error('Error al obtener favoritos:', err)
     });

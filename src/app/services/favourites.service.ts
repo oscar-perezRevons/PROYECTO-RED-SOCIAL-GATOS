@@ -11,9 +11,8 @@ export class FavouritesService {
   private id_user = '1';
 
   constructor(private http: HttpClient) {}
-
-  getFavourites(): Observable<any> {
-       return this.http.get(`${this.apiUrl}?sub_id=${this.id_user}`);
+  getFavourites(id_user: number): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/${id_user}`);
   }
 
   addFavourite(imageId: string): Observable<any> {
