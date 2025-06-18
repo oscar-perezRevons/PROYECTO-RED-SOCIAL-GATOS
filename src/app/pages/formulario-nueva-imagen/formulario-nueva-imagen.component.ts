@@ -3,11 +3,11 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-nueva-imagen',
-  imports: [RouterLink],
+  //imports: [RouterLink],
   templateUrl: './formulario-nueva-imagen.component.html',
   styleUrl: './formulario-nueva-imagen.component.scss'
 })
-export class FormularioNuevaImagenComponent {} // <--- Asegúrate de que está exportado
+export class FormularioNuevaImagenComponent { } // <--- Asegúrate de que está exportado
 // import { Component, inject } from '@angular/core';
 // import { GatoService } from '../../services/gato.service';
 // import { RouterLink } from '@angular/router';
