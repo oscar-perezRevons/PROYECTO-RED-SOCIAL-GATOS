@@ -3,19 +3,21 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
-  background-color: #fdfdfd;
+  background-color: var(--bg);
+  font-family: 'Nunito', sans-serif;
 }
 
 .favorito-card {
-  background-color: #ffffff;
+  background-color: #fff;
+  border: 1px solid var(--accent2);
   border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   padding: 1rem;
   text-align: center;
   transition: transform 0.2s ease-in-out;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
   }
 
   img {
@@ -27,17 +29,19 @@
   }
 
   button {
-    background-color: #ff4d4d;
+    background-color: var(--button);
     border: none;
-    color: white;
+    color: var(--text);
+    font-weight: 600;
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    font-family: 'Fredoka', sans-serif;
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: #e60000;
+      background-color: var(--accent1);
     }
   }
 }
@@ -45,6 +49,7 @@
 .cargando-texto {
   text-align: center;
   font-size: 1.2rem;
-  color: #666;
+  color: var(--accent2);
   margin-top: 2rem;
+  font-family: 'Nunito', sans-serif;
 }

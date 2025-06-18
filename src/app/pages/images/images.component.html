@@ -1,8 +1,6 @@
 <button id="add" [routerLink]="'/formulario-nueva-imagen'">+</button>
-<!-- Campo de entrada de texto -->
 <input type="text" [(ngModel)]="breedName" placeholder="Ej: Siamese" />
 
-<!-- Botón para buscar -->
 <button (click)="getImagesByBreed(breedName)">Buscar</button>
 <div class="carrusel">
   <h2>Todas las imágenes</h2> 
