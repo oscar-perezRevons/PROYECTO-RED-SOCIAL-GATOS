@@ -4,10 +4,12 @@
   <div>
     
     @for (imagen of listaDeImagenes; track imagen.id_image) {
+    <div class="card-content">
     <img src="{{imagen.url_image}}" alt="Imagen">
     <h3>raza: {{imagen.name_breed}} </h3>
     <button  class="search">❤️</button>
     <!-- (click)="agregarAFavoritos(imagen.id)" -->
+    </div>
     } @empty {
     <h2>No existen imágenes de gatos</h2>
     }

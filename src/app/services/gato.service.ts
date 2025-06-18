@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Breed, image } from '../models/image.model';
 import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -42,10 +43,21 @@ export class GatoService {
   //   const headers = new HttpHeaders({
   //     'x-api-key': this.x_api_key
   //   });
+  //   const headers = new HttpHeaders({
+  //     'x-api-key': this.x_api_key
+  //   });
 
   //   return this.http.post('https://api.thecatapi.com/v1/images/upload', formData, { headers });
   // }
+  //   return this.http.post('https://api.thecatapi.com/v1/images/upload', formData, { headers });
+  // }
 
+  // borrarImagenPorId(id: string) {
+  //   const headers = new HttpHeaders({
+  //     'x-api-key': this.x_api_key
+  //   });
+  //   return this.http.delete('https://api.thecatapi.com/v1/images/' + id, { headers });
+  // }
   // borrarImagenPorId(id: string) {
   //   const headers = new HttpHeaders({
   //     'x-api-key': this.x_api_key

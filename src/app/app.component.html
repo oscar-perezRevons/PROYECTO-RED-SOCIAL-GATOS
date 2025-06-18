@@ -1,9 +1,12 @@
 <div class="topnav">
-  <h1>The Cat Api</h1>
-  <a [routerLink]="['/images']" [routerLinkActive]="['active']">Imágenes</a>
-  <a [routerLink]="['/favoritos']" [routerLinkActive]="['active']">Favoritos</a>
-  <a [routerLink]="['/razas']" [routerLinkActive]="['active']">Razas</a>
-  <a [routerLink]="['/votos']" [routerLinkActive]="['active']">Votos</a>
-  <a [routerLink]="['/breeds']" [routerLinkActive]="['active']">Votos TEST</a>
+  <img src="assets/media/logo_nekoo3.png" alt="Logo Nekoo" class="logo" />
+
+  <nav>
+    <a [routerLink]="['/images']" routerLinkActive="active">Imágenes</a>
+    <a [routerLink]="['/favoritos']" routerLinkActive="active">Favoritos</a>
+    <a [routerLink]="['/razas']" routerLinkActive="active">Razas</a>
+    <a [routerLink]="['/votos']" routerLinkActive="active">Votos</a>
+  </nav>
 </div>
+
 <router-outlet />
