@@ -1,3 +1,15 @@
-body{
-    margin: 0;
+:root {
+  --bg: #F5F1E6;
+  --text: #4B3621;
+  --accent1: #D6A77A;
+  --accent2: #A89C94;
+  --button: #E8C07D;
+  --button-hover: #d4a757;
+}
+
+body {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
 }

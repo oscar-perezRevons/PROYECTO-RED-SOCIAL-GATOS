@@ -1,53 +1,65 @@
-.contenedor-razas{ 
-display: flex; 
-flex-direction: row; 
-gap: 1rem; 
-flex-wrap: wrap; 
-div{ 
-flex-basis: 25%; 
-flex-grow: 1; 
-flex-shrink: 1; 
-} 
+:host {
+  display: block;
+  padding: 2rem;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
-
-
-.buscador-nav { //prueba
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  margin-top: 1%;
+.contenedor-razas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
-.input-busqueda {
-  flex: 1;
-  padding: 5px;
-}
+.contenedor-razas > div {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: transform 0.2s ease-in-out;
 
-.boton-busqueda {
-  padding: 5px 15px;
-  cursor: pointer;
-}
+  &:hover {
+    transform: translateY(-4px);
+  }
 
-button, a{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
-  padding: 10px 15px;
-  font-size: 0.95rem; 
-  border-radius: 10px;
-  border: none;
-  background-color:indianred;
+  button {
+    display: inline-block;
+    margin: 0.5rem 0.5rem 0 0;
+    background-color: var(--button);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--accent1);
+    }
+  }
 }
 
 .agregar-raza-btn {
-    margin-left: 43.5%;
-    margin-top: 1%;
-    display: inline-block;
-    margin-bottom: 15px;
-    padding: 10px 20px;
-    background-color: #2980b9;
-    color: white;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  background-color: var(--accent1);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.8rem 1.4rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--accent2);
+  }
+}
+
+.cargando-texto {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--accent2);
+  margin-top: 2rem;
 }
