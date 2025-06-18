@@ -1,107 +1,100 @@
-/* Contenedor general */
-.voto-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 20px 0;
-}
-
-/* Tarjeta de cada voto */
-.voto-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease;
-}
-
-.voto-card:hover {
-    transform: translateY(-5px);
-}
-
-/* Imagen del gato */
-.gato-img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Contenido info */
-.voto-info {
-    padding: 15px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.voto-info h3 {
-    margin: 0 0 10px 0;
-    color: #2c3e50;
-    font-size: 1.25rem;
-}
-
-.voto-info p {
-    margin: 5px 0;
-    color: #555;
-    font-size: 0.9rem;
-}
-
-.acciones {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-/* Links de detalle y editar */
-.detalle-link {
-    flex-grow: 1;
-    padding: 8px 12px;
-    background-color: #3498db;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-
-.detalle-link:hover {
-    background-color: #2980b9;
-}
-
-/* Botón eliminar */
-.eliminar-btn {
-    padding: 8px 12px;
-    background-color: #e74c3c;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.eliminar-btn:hover {
-    background-color: #c0392b;
+h2 {
+  font-family: 'Fredoka', sans-serif;
+  color: var(--accent1);
+  text-align: center;
+  margin: 2rem 0 1rem;
 }
 
 .agregar-voto-btn {
-    display: inline-block;
-    margin-bottom: 15px;
-    padding: 10px 20px;
-    background-color: #27ae60;
-    color: white;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  background-color: var(--accent1);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  font-family: 'Nunito', sans-serif;
+  &:hover {
+    background-color: var(--accent2);
+  }
 }
 
-.agregar-voto-btn:hover {
-    background-color: #1e8449;
+
+
+.voto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.voto-card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+}
+
+.gato-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.voto-info {
+  padding: 1rem;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
+
+  h3 {
+    margin: 0.5rem 0;
+    color: var(--accent1);
+  }
+
+  p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+  }
+
+  .acciones {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .detalle-link {
+      color: var(--accent2);
+      text-decoration: underline;
+      font-weight: 600;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--accent1);
+      }
+    }
+
+    .eliminar-btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #cc0000;
+      }
+    }
+  }
 }
