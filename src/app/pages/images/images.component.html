@@ -1,19 +1,13 @@
 <button id="add" [routerLink]="'/formulario-nueva-imagen'">+</button>
 <div class="carrusel">
   <h2>Todas las imágenes</h2> <br>
-  <div>
-
+  <div>    
     @for (imagen of listaDeImagenes; track imagen.id_image) {
     <div class="card-content">
-      <img src="{{imagen.url_image}}" alt="Imagen">
-      <h3>raza: {{imagen.name_breed}} </h3>
-      <div class="iconos">
-        <button class="search">✏️</button>
-        <button class="search" (click)="agregarFavorito(imagen.id_image)">❤️</button>
-         <button  class="search" (click)="deleteImage(imagen.id_image)">🗑️</button>
-      </div>
-
-      <!-- (click)="agregarAFavoritos(imagen.id)" -->
+    <img src="{{imagen.url_image}}" alt="Imagen">
+    <h3>raza: {{imagen.name_breed}} </h3>
+    <button  class="search">❤️</button>
+    <!-- (click)="agregarAFavoritos(imagen.id)" -->
     </div>
     } @empty {
     <h2>No existen imágenes de gatos</h2>

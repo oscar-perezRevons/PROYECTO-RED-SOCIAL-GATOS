@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FavouritesService } from '../../services/favourites.service';
+import { Favourite } from '../../models/favourite';
 
 @Component({
   selector: 'app-lista-favoritos',
@@ -10,25 +11,25 @@ import { FavouritesService } from '../../services/favourites.service';
   styleUrls: ['./lista-favoritos.component.scss']
 })
 export class ListaFavoritosComponent implements OnInit {
-  favourites: any[] = [];
+  favourites: Favourite[] = [];
 
   constructor(private favouritesService: FavouritesService) {}
 
   ngOnInit(): void {
-    this.cargarFavoritos();
+    const id_user = 1; 
+    this.favouritesService.getFavourites(id_user).subscribe(
+      (data) => this.favourites = data,
+      (error) => console.error('Error al obtener favoritos', error)
+    );
   }
 
-  cargarFavoritos(): void {
-    this.favouritesService.getFavourites().subscribe({
-      next: (data) => this.favourites = data,
-      error: (err) => console.error('Error al obtener favoritos:', err)
-    });
-  }
+  
 
+  
   eliminarFavorito(favId: number): void {
     this.favouritesService.eliminarFavorito(favId).subscribe({
       next: () => {
-        this.favourites = this.favourites.filter(fav => fav.id !== favId);
+        this.favourites = this.favourites.filter(fav => fav.id_favourite !== favId);
       },
       error: (err) => {
         console.error('Error al eliminar favorito:', err);

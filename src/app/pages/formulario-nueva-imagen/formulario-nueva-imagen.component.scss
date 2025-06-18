@@ -1,69 +1,67 @@
 .form-container {
-  background-color: rebeccapurple; // Morado de fondo
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-}
-*{
-  font-size: large;
-}
-h2{
-  text-align: center;
-}
-textarea{
-  width: 50%;
-  height:50%;
-  margin-left: 1rem;
-}
-form {
-  max-width: 50%;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: gray;
-}
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--bg);
+  border: 1px solid var(--accent2);
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
 
-.form-group {
-  margin-bottom: 1rem;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-.radio-group {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-input[type="radio"] {
-  &:hover {
-    transform: scale(1.2); // Efecto hover en los radio buttons
-    cursor: pointer;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
-}
 
-input[type="text"],
-input[type="file"] {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+  h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--text);
+  }
 
-button {
-  background-color: violet;
-  color: black;
-  border: none;
-  border-radius: 2rem;
-  padding: 1rem;
-  margin-left: 40%;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  .form-group {
+    display: flex;
+    flex-direction: column;
 
-  &:hover {
-    background-color: white;
-    transform: scale(1.05); 
+    label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--accent1);
+    }
+
+    input[type="text"],
+    input[type="file"] {
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border: 1px solid var(--accent2);
+      border-radius: 0.5rem;
+      background-color: #fff;
+      color: var(--text);
+      font-family: 'Nunito', sans-serif;
+
+      &:focus {
+        outline: none;
+        border-color: var(--accent1);
+        box-shadow: 0 0 0 2px rgba(214, 167, 122, 0.3);
+      }
+    }
+
+    button {
+      background-color: var(--button);
+      color: var(--text);
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: var(--accent1);
+      }
+    }
   }
 }

@@ -1,11 +1,9 @@
 <div *ngIf="voto;" class="detalle-card">
     <h2>Detalles del Voto </h2>
-    <img [src]="voto.image_url" alt="Gato" class="gato-img" />
+    <img [src]="imageUrl" alt="Gato" class="gato-img" />
     <div class="info">
-        <p><strong>Nombre (sub_id):</strong> {{ voto.sub_id }}</p>
-        <p><strong>ID de imagen:</strong> {{ voto.image_id }}</p>
-        <p><strong>Puntaje:</strong> {{ voto.value }}/5</p>
-        <p><strong>País:</strong> {{ voto.country_code }}</p>
-        <p><strong>Fecha:</strong> {{ voto.created_at | date:'medium' }}</p>
+        <p><strong>Nombre (sub_id):</strong> {{ voto.id_vote }}</p>
+        <p><strong>ID de imagen:</strong> {{ voto.id_image }}</p>
+        <p><strong>Puntaje:</strong> {{ voto.value_vote }}/5</p>
     </div>
 </div>

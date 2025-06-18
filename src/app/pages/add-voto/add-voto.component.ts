@@ -5,12 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface CatImage {
-  id: string;
-  url: string;
-}
-
+import { environment } from '../../../environments/environment';
+import { image } from '../../models/image.model';
 @Component({
   imports: [CommonModule, FormsModule],
   selector: 'app-add-voto',
@@ -19,16 +15,15 @@ interface CatImage {
 })
 export class AddVotoComponent implements OnInit {
   nuevoVoto: Vote = {
-    image_id: '',
-    sub_id: '',
-    created_at: new Date().toISOString(),
-    value: 0,
-    country_code: '',
-    image_url: ''
+    value_vote: 0,
+    id_user: 1,
+    id_image: 0
   };
 
-  catImages: CatImage[] = [];
-  imagenSeleccionada?: CatImage;
+  catImages: image[] = [];
+  imagenSeleccionada?: image;
+
+  private apiUrl = `${environment.apiUrl}/api/votes`
 
   constructor(private votoService: VoteService, private http: HttpClient, private router: Router) { }
 
@@ -37,16 +32,15 @@ export class AddVotoComponent implements OnInit {
   }
 
   cargarImagenesGatos(): void {
-    this.http.get<CatImage[]>('https://api.thecatapi.com/v1/images/search?limit=5')
+    this.http.get<image[]>(`${environment.apiUrl}/api/images`)
       .subscribe(images => {
         this.catImages = images;
       });
   }
 
-  seleccionarImagen(imagen: CatImage): void {
+  seleccionarImagen(imagen: image): void {
     this.imagenSeleccionada = imagen;
-    this.nuevoVoto.image_id = imagen.id;
-    this.nuevoVoto.image_url = imagen.url;
+    this.nuevoVoto.id_image = imagen.id_image;
   }
 
   agregarVoto(): void {

@@ -1,12 +1,31 @@
-.contenedor-raza { 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
-  padding: 25px; 
+ .contenedor-raza {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
+  transition: transform 0.2s ease-in-out;
 
-  h2 { 
-    font-weight: bolder; 
+  &:hover {
+    transform: translateY(-4px);
   }
+}
 
-  .clasificacion-titulo { 
-    font-weight: bolder; 
-  }
+.titulo {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+  color: var(--accent1);
+  margin-bottom: 0.8rem;
+}
+
+.clasificacion-titulo {
+  font-weight: 600;
+  color: var(--accent2);
+  margin-right: 0.4rem;
+}
+
+p {
+  margin-top: 0.8rem;
+  line-height: 1.6;
 }
