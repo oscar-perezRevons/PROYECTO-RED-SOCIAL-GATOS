@@ -1,56 +1,13 @@
-/* #barra {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 1rem;
-  background-color: var(--accent2);
-  border-radius: 0.5rem;
-  margin-bottom: 1.5rem;
-
-  input[type="text"] {
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--accent1);
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    background-color: white;
-    color: var(--text);
-    flex: 1;
-    min-width: 150px;
-  }
-
-  button {
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    font-family: inherit;
-    background-color: var(--button);
-    border: none;
-    border-radius: 0.5rem;
-    color: var(--text);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &.search {
-      background-color: var(--button);
-    }
-
-    &:hover {
-      background-color: var(--button-hover);
-    }
-  }
-
-  #add {
-    font-size: 1.5rem;
-    padding: 0.5rem 1rem;
-    background-color: var(--accent1);
-    color: white;
-  }
-} */
-
 .carrusel {
   padding: 2rem;
   background-color: var(--bg);
   border-radius: 1rem;
   margin-bottom: 2.5rem;
+
+  .iconos {
+    display: flex;
+    flex-direction: row;
+  } 
 
   h2 {
     font-family: 'Fredoka', sans-serif;
@@ -104,8 +61,7 @@
     }
   }
 
-  // Estilo para tarjetas completas si hay más datos (ID, raza, etc.)
-   > div > div {
+  > div > div {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -117,5 +73,5 @@
     &:hover {
       transform: scale(1.02);
     }
-  } 
+  }
 }

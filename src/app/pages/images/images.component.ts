@@ -16,6 +16,7 @@ import { FavouritesService } from '../../services/favourites.service';
 export class ImagesComponent{
   listaDeImagenes: image[]=[];
   imagenService: GatoService = inject(GatoService);
+  favouritesService: FavouritesService=inject(FavouritesService);
   constructor(){
     this.imagenService.getAllTheImages().subscribe(
       data=>{
@@ -26,6 +27,25 @@ export class ImagesComponent{
        () => console.log('FIN')
     );
   }
+  //borrar una imagen
+   deleteImage(id: number) {
+    this.imagenService.deleteImage(id).subscribe(() => {
+      this.listaDeImagenes = this.listaDeImagenes.filter(imagen => imagen.id_image !== id);
+      console.log("Imagen eliminada correctamente");
+      alert("Imagen eliminada correctamente");
+    });
+  }
+
+  //agregar a favoritos una imagen
+  agregarFavorito(idImage: number) {
+    const idUser = 1; // Reemplaza con el ID del único usuario que tenemos
+
+    this.favouritesService.agregarFavorito(idUser, idImage).subscribe(
+      response => alert("Añadido a favoritos con éxito"),
+      error => console.error('Error al añadir favorito:', error)
+    );
+  }
+
 }
 // export class ImagesComponent {
 //   // @Input()Imagen!:image;
