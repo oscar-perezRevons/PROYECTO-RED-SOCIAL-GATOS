@@ -3,19 +3,22 @@ import { image } from '../../models/image.model';
 import { GatoService } from '../../services/gato.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FavouritesService } from '../../services/favourites.service';
 
 @Component({
   selector: 'app-images',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './images.component.html',
   styleUrl: './images.component.scss'
 })
 export class ImagesComponent{
   listaDeImagenes: image[]=[];
+  listaDeImagenesPorRaza: image[]=[];
   imagenService: GatoService = inject(GatoService);
+  favouritesService: FavouritesService=inject(FavouritesService);
+  breedName:string='';
   constructor(){
     this.imagenService.getAllTheImages().subscribe(
       data=>{
@@ -25,6 +28,37 @@ export class ImagesComponent{
        error => console.log(error),
        () => console.log('FIN')
     );
+  }
+  //borrar una imagen
+   deleteImage(id: number) {
+    this.imagenService.deleteImage(id).subscribe(() => {
+      this.listaDeImagenes = this.listaDeImagenes.filter(imagen => imagen.id_image !== id);
+      console.log("Imagen eliminada correctamente");
+      alert("Imagen eliminada correctamente");
+    });
+  }
+
+  //agregar a favoritos una imagen
+  agregarFavorito(idImage: number) {
+    const idUser = 1; // Reemplaza con el ID del único usuario que tenemos
+
+    this.favouritesService.agregarFavorito(idUser, idImage).subscribe(
+      response => alert("Añadido a favoritos con éxito"),
+      error => console.error('Error al añadir favorito:', error)
+    );
+  }
+  //get imágenes dada una raza ingresada por el usuario
+  getImagesByBreed(nameBreed:string){
+    this.imagenService.getImagesByBreed(this.breedName.trim()).subscribe({
+      next: (data) => {
+        this.listaDeImagenesPorRaza = data;
+      },
+      error: (err) => {
+        console.error('Error cargando imágenes', err);
+        alert("Error al buscar por raza, verifique que el nombre de la raza esté bien escrito")
+        this.listaDeImagenesPorRaza = [];
+      }
+    });
   }
 }
 // export class ImagesComponent {
