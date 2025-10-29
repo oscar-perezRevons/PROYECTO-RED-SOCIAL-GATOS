@@ -1,17 +1,60 @@
-<a routerLink="/agregar-raza" class="agregar-raza-btn">Agregar nueva raza</a>
-<div *ngIf="listaDeRazas.length; else cargando" class="contenedor-razas">
-    @for ( raza of listaDeRazas; track raza.id_breed){
-    <div>
-        <app-raza [raza]="raza"></app-raza>
-        <button (click)="eliminarRaza(raza.id_breed)">🗑 Eliminar</button>
-        <button [routerLink]="['/editar-raza', raza.id_breed]">Editar raza</button>
+<div class="razas-container">
+  <h2>Gestión de Razas</h2>
+  
+  <div class="controls-section">
+    <div class="filters">
+      <div class="search-box">
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          (ngModelChange)="aplicarFiltros()"
+          placeholder="Buscar por nombre, origen o descripción..." 
+          class="search-input"
+        />
+      </div>
+      
+      <div class="sort-box">
+        <label for="sortBy">Ordenar por:</label>
+        <select 
+          id="sortBy" 
+          [(ngModel)]="sortBy" 
+          (ngModelChange)="aplicarFiltros()"
+          class="sort-select"
+        >
+          <option value="none">Sin ordenar</option>
+          <option value="name-asc">Nombre (A-Z)</option>
+          <option value="name-desc">Nombre (Z-A)</option>
+          <option value="origin-asc">Origen (A-Z)</option>
+          <option value="origin-desc">Origen (Z-A)</option>
+        </select>
+      </div>
+      
+      <button (click)="limpiarFiltros()" class="clear-btn">Limpiar filtros</button>
+    </div>
+    
+    <a routerLink="/agregar-raza" class="agregar-raza-btn">➕ Agregar nueva raza</a>
+  </div>
 
+  <div *ngIf="isLoading" class="loading-message">Cargando razas...</div>
+
+  <div *ngIf="razasFiltradas.length; else sinRazas" class="contenedor-razas">
+    @for ( raza of razasFiltradas; track raza.id_breed){
+    <div class="raza-item">
+      <app-raza [raza]="raza"></app-raza>
+      <div class="raza-actions">
+        <button class="delete-btn" (click)="eliminarRaza(raza.id_breed)">🗑 Eliminar</button>
+        <button class="edit-btn" [routerLink]="['/editar-raza', raza.id_breed]">✏️ Editar raza</button>
+      </div>
     </div>
     } @empty {
-    <p>No existen razas</p>
+    <p>No se encontraron razas con los criterios seleccionados</p>
     }
-</div>
+  </div>
 
-<ng-template #cargando>
-  <p class="cargando-texto">Cargando razas...</p>
-</ng-template>
+  <ng-template #sinRazas>
+    <div *ngIf="!isLoading" class="empty-message">
+      <p>No existen razas registradas</p>
+      <a routerLink="/agregar-raza" class="agregar-raza-btn">Agregar la primera raza</a>
+    </div>
+  </ng-template>
+</div>
