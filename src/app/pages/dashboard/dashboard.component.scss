@@ -6,7 +6,7 @@
 
 h1 {
   text-align: center;
-  color: #333;
+  color: var(--accent1);
   margin-bottom: 30px;
 }
 
@@ -121,7 +121,7 @@ h1 {
 
 .quick-actions h2 {
   margin: 0 0 20px 0;
-  color: #333;
+  color: var(--accent1);
   font-size: 20px;
 }
 

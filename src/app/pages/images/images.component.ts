@@ -85,10 +85,11 @@ export class ImagesComponent{
   aplicarFiltros() {
     let resultado = [...this.listaDeImagenes];
 
-    // Filtrar por búsqueda
+    // Filtrar por búsqueda - sanitize search term
     if (this.searchTerm.trim()) {
+      const searchLower = this.searchTerm.trim().toLowerCase().replace(/[<>]/g, '');
       resultado = resultado.filter(img => 
-        img.name_breed.toLowerCase().includes(this.searchTerm.toLowerCase())
+        img.name_breed.toLowerCase().includes(searchLower)
       );
     }
 

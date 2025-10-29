@@ -61,12 +61,13 @@ export class RazasComponent implements OnInit{ // implemento OnInit
   aplicarFiltros(): void {
     let resultado = [...this.listaDeRazas];
 
-    // Filtrar por búsqueda
+    // Filtrar por búsqueda - sanitize search term
     if (this.searchTerm.trim()) {
+      const searchLower = this.searchTerm.trim().toLowerCase().replace(/[<>]/g, '');
       resultado = resultado.filter(raza => 
-        raza.name_breed.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        raza.origin_breed.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        raza.description_breed.toLowerCase().includes(this.searchTerm.toLowerCase())
+        raza.name_breed.toLowerCase().includes(searchLower) ||
+        raza.origin_breed.toLowerCase().includes(searchLower) ||
+        raza.description_breed.toLowerCase().includes(searchLower)
       );
     }
 
