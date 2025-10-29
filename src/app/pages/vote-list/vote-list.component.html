@@ -1,22 +1,67 @@
-<h2>Lista de votos de gatos </h2>
-<a routerLink="/agregar-voto" class="agregar-voto-btn">Agregar nuevo voto</a>
-<div class="voto-grid">
-    <article *ngFor="let voto of votos" class="voto-card">
-        <img [src]="voto.url_image" alt="Gato" class="gato-img" />
-        <div class="voto-info">
-              <p><strong>Puntaje:</strong> {{ voto.value_vote }}/5</p>
-          
-            <div class="acciones">
-                <a [routerLink]="['/voto-por-id', voto.id_vote]" class="detalle-link">
-                    Ver más
-                </a>
-                <a [routerLink]="['/editar-voto', voto.id_vote]" class="detalle-link">
-                    Editar voto
-                </a>
-                <button (click)="eliminarVoto(voto.id_vote!)" class="eliminar-btn">
-                    Eliminar voto
-                </button>
-            </div>
+<div class="vote-list-container">
+  <h2>Lista de votos de gatos</h2>
+  
+  <div class="controls-section">
+    <div class="filters">
+      <div class="filter-group">
+        <label for="filterRating">Filtrar por puntuación:</label>
+        <select 
+          id="filterRating" 
+          [(ngModel)]="filterByRating" 
+          (ngModelChange)="aplicarFiltros()"
+          class="filter-select"
+        >
+          <option value="all">Todas</option>
+          <option value="1">1 estrella</option>
+          <option value="2">2 estrellas</option>
+          <option value="3">3 estrellas</option>
+          <option value="4">4 estrellas</option>
+          <option value="5">5 estrellas</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="sortBy">Ordenar por:</label>
+        <select 
+          id="sortBy" 
+          [(ngModel)]="sortBy" 
+          (ngModelChange)="aplicarFiltros()"
+          class="filter-select"
+        >
+          <option value="none">Sin ordenar</option>
+          <option value="rating-asc">Puntuación (menor a mayor)</option>
+          <option value="rating-desc">Puntuación (mayor a menor)</option>
+          <option value="id-asc">Más antiguos</option>
+          <option value="id-desc">Más recientes</option>
+        </select>
+      </div>
+      
+      <button (click)="limpiarFiltros()" class="clear-btn">Limpiar filtros</button>
+    </div>
+    
+    <a routerLink="/agregar-voto" class="agregar-voto-btn">➕ Agregar nuevo voto</a>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-message">Cargando votos...</div>
+
+  <div class="voto-grid">
+    <article *ngFor="let voto of votosFiltrados" class="voto-card">
+      <img [src]="voto.url_image" alt="Gato" class="gato-img" />
+      <div class="voto-info">
+        <p><strong>Puntaje:</strong> {{ voto.value_vote }}/5</p>
+        
+        <div class="acciones">
+          <a [routerLink]="['/voto-por-id', voto.id_vote]" class="detalle-link">
+            Ver más
+          </a>
+          <a [routerLink]="['/editar-voto', voto.id_vote]" class="detalle-link">
+            Editar voto
+          </a>
+          <button (click)="eliminarVoto(voto.id_vote!)" class="eliminar-btn">
+            Eliminar voto
+          </button>
         </div>
+      </div>
     </article>
+  </div>
 </div>

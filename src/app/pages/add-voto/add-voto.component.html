@@ -1,21 +1,38 @@
 <h2>Agregar Voto 🐾</h2>
 <form (ngSubmit)="agregarVoto()" #formVoto="ngForm" class="formulario">
 
-    <label>Sub ID (nombre):</label>
-    <input type="text" name="sub_id" [(ngModel)]="nuevoVoto.id_vote" required />
+    <div class="form-group">
+        <label for="value">Puntaje (1–5):</label>
+        <input 
+            type="number" 
+            id="value"
+            name="value" 
+            [(ngModel)]="nuevoVoto.value_vote" 
+            min="1" 
+            max="5" 
+            required 
+            #valueInput="ngModel"
+        />
+        <span class="error-message" *ngIf="valueInput.invalid && valueInput.touched">
+            Por favor ingresa un puntaje entre 1 y 5
+        </span>
+    </div>
 
-    <label>Puntaje (1–5):</label>
-    <input type="number" name="value" [(ngModel)]="nuevoVoto.value_vote" min="1" max="5" required />
-
-    <div>
+    <div class="form-group">
         <h3>Selecciona una imagen de gato</h3>
+        <span class="error-message" *ngIf="!imagenSeleccionada && formVoto.submitted">
+            Debes seleccionar una imagen
+        </span>
         <div class="imagenes-gatos">
             <div *ngFor="let img of catImages" class="imagen-container"
                 [class.selected]="imagenSeleccionada?.id_image === img.id_image" (click)="seleccionarImagen(img)">
                 <img [src]="img.url_image" alt="Gato" />
+                <p class="breed-name">{{ img.name_breed }}</p>
             </div>
         </div>
     </div>
 
-    <button type="submit" [disabled]="formVoto.invalid || !imagenSeleccionada">Guardar Voto</button>
+    <button type="submit" [disabled]="formVoto.invalid || !imagenSeleccionada" class="submit-btn">
+        Guardar Voto
+    </button>
 </form>
