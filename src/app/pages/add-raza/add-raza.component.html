@@ -1,15 +1,54 @@
 <h2>Agregar Raza 🐱</h2>
 <form (ngSubmit)="agregarRaza()" #formRaza="ngForm" class="formulario">
 
-  <label>Nombre de la raza:</label>
-  <input type="text" name="name_breed" [(ngModel)]="nuevaRaza.name_breed" required />
+  <div class="form-group">
+    <label for="name_breed">Nombre de la raza:</label>
+    <input 
+      type="text" 
+      id="name_breed"
+      name="name_breed" 
+      [(ngModel)]="nuevaRaza.name_breed" 
+      required 
+      minlength="2"
+      #nameInput="ngModel"
+    />
+    <span class="error-message" *ngIf="nameInput.invalid && nameInput.touched">
+      El nombre debe tener al menos 2 caracteres
+    </span>
+  </div>
 
-  <label>Origen de la raza:</label>
-  <input type="text" name="origin_breed" [(ngModel)]="nuevaRaza.origin_breed" required />
+  <div class="form-group">
+    <label for="origin_breed">Origen de la raza:</label>
+    <input 
+      type="text" 
+      id="origin_breed"
+      name="origin_breed" 
+      [(ngModel)]="nuevaRaza.origin_breed" 
+      required 
+      minlength="2"
+      #originInput="ngModel"
+    />
+    <span class="error-message" *ngIf="originInput.invalid && originInput.touched">
+      El origen debe tener al menos 2 caracteres
+    </span>
+  </div>
 
-  <label>Descripción:</label>
-  <textarea name="description_breed" [(ngModel)]="nuevaRaza.description_breed" rows="4" required></textarea>
+  <div class="form-group">
+    <label for="description_breed">Descripción:</label>
+    <textarea 
+      id="description_breed"
+      name="description_breed" 
+      [(ngModel)]="nuevaRaza.description_breed" 
+      rows="4" 
+      required 
+      minlength="10"
+      #descInput="ngModel"
+    ></textarea>
+    <span class="error-message" *ngIf="descInput.invalid && descInput.touched">
+      La descripción debe tener al menos 10 caracteres
+    </span>
+  </div>
 
-  <button type="submit" [disabled]="formRaza.invalid">Guardar Raza</button>
+  <button type="submit" [disabled]="formRaza.invalid" class="submit-btn">Guardar Raza</button>
 </form>
 

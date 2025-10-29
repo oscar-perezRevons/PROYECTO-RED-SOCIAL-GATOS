@@ -11,8 +11,10 @@ import { EditVotoComponent } from './pages/edit-voto/edit-voto.component';
 import { BreedListComponent } from './pages/breed-list/breed-list.component';
 import { AddRazaComponent } from './pages/add-raza/add-raza.component';
 import { EditRazaComponent } from './pages/edit-raza/edit-raza.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'favoritos', component: FavoritosComponent },
   { path: 'images', component: ImagesComponent },
   { path: 'formulario-nueva-imagen', component: FormularioNuevaImagenComponent },
@@ -25,6 +27,6 @@ export const routes: Routes = [
   { path: 'editar-voto/:id', component: EditVotoComponent },
   { path: 'editar-raza/:id', component: EditRazaComponent },
   { path: 'breeds', component: BreedListComponent },
-  { path: '', redirectTo: 'images', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '**', component: PaginaNoEncontradaComponentComponent }
 ];

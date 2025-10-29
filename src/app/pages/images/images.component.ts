@@ -16,26 +16,45 @@ import { FavouritesService } from '../../services/favourites.service';
 export class ImagesComponent{
   listaDeImagenes: image[]=[];
   listaDeImagenesPorRaza: image[]=[];
+  listaFiltrada: image[]=[];
   imagenService: GatoService = inject(GatoService);
   favouritesService: FavouritesService=inject(FavouritesService);
   breedName:string='';
+  searchTerm:string='';
+  sortBy: string = 'none';
+  isLoading: boolean = false;
+
   constructor(){
+    this.loadImages();
+  }
+
+  loadImages() {
+    this.isLoading = true;
     this.imagenService.getAllTheImages().subscribe(
       data=>{
         this.listaDeImagenes=data;
+        this.listaFiltrada = data;
+        this.isLoading = false;
         console.log('mis imágenes recibidas del get: ',data);
       },
-       error => console.log(error),
+       error => {
+        console.log(error);
+        this.isLoading = false;
+       },
        () => console.log('FIN')
     );
   }
+
   //borrar una imagen
-   deleteImage(id: number) {
-    this.imagenService.deleteImage(id).subscribe(() => {
-      this.listaDeImagenes = this.listaDeImagenes.filter(imagen => imagen.id_image !== id);
-      console.log("Imagen eliminada correctamente");
-      alert("Imagen eliminada correctamente");
-    });
+  deleteImage(id: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar esta imagen?')) {
+      this.imagenService.deleteImage(id).subscribe(() => {
+        this.listaDeImagenes = this.listaDeImagenes.filter(imagen => imagen.id_image !== id);
+        this.aplicarFiltros();
+        console.log("Imagen eliminada correctamente");
+        alert("Imagen eliminada correctamente");
+      });
+    }
   }
 
   //agregar a favoritos una imagen
@@ -47,6 +66,7 @@ export class ImagesComponent{
       error => console.error('Error al añadir favorito:', error)
     );
   }
+
   //get imágenes dada una raza ingresada por el usuario
   getImagesByBreed(nameBreed:string){
     this.imagenService.getImagesByBreed(this.breedName.trim()).subscribe({
@@ -59,6 +79,37 @@ export class ImagesComponent{
         this.listaDeImagenesPorRaza = [];
       }
     });
+  }
+
+  // Nueva funcionalidad de búsqueda y filtrado
+  aplicarFiltros() {
+    let resultado = [...this.listaDeImagenes];
+
+    // Filtrar por búsqueda
+    if (this.searchTerm.trim()) {
+      resultado = resultado.filter(img => 
+        img.name_breed.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
+
+    // Ordenar
+    if (this.sortBy === 'breed-asc') {
+      resultado.sort((a, b) => a.name_breed.localeCompare(b.name_breed));
+    } else if (this.sortBy === 'breed-desc') {
+      resultado.sort((a, b) => b.name_breed.localeCompare(a.name_breed));
+    } else if (this.sortBy === 'id-asc') {
+      resultado.sort((a, b) => a.id_image - b.id_image);
+    } else if (this.sortBy === 'id-desc') {
+      resultado.sort((a, b) => b.id_image - a.id_image);
+    }
+
+    this.listaFiltrada = resultado;
+  }
+
+  limpiarFiltros() {
+    this.searchTerm = '';
+    this.sortBy = 'none';
+    this.listaFiltrada = [...this.listaDeImagenes];
   }
 }
 // export class ImagesComponent {
